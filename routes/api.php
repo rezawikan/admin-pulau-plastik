@@ -22,6 +22,8 @@ Route::get('initiative', 'API\InitiativeAPIController@index');
 Route::get('initiative/{initiative_slug}', 'API\InitiativeAPIController@show');
 Route::get('research', 'API\ResearchAPIController@index');
 Route::get('research/{research_slug}', 'API\ResearchAPIController@show');
+Route::get('testimony', 'API\TestimonyAPIController@index');
+Route::get('episode', 'API\EpisodeAPIController@index');
 Route::get('upcomming', 'API\ScreeningAPIController@index');
 Route::get('partner', 'API\PartnerAPIController@index');
 Route::get('media-coverage', 'API\MediaCoverageAPIController@index');

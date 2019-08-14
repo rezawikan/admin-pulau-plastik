@@ -1,10 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', 'Create Partner')
+@section('title', 'Create Supporter')
 
 @section('content')
 <div class="container">
-    <form class="" action="{{ route('partner.store') }}" method="POST">
+    <form class="" action="{{ route('supporter.store') }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="">Link</label>
@@ -15,7 +15,7 @@
             <input type="number" name="order" class="form-control" placeholder="Order" >
         </div>
         <div class="form-group">
-            <label for="">Partner Image</label>
+            <label for="">Supporter Image</label>
             <div class="input-group">
                 <span class="input-group-btn">
                     <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
@@ -25,7 +25,7 @@
                 <input id="thumbnail" class="form-control" type="text" name="image">
 
             </div>
-            <span>Please take/put image on the partner folder (scale 3:1)</span>
+            <span>Please take/put image on the supporter folder (scale 3:1)</span>
             <img id="holder" style="margin-top:15px;max-height:100px;">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

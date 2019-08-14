@@ -5,8 +5,10 @@ namespace App\Providers;
 use App\Models\Blog;
 use App\Models\Team;
 use App\Models\Media;
+use App\Models\Episode;
 use App\Models\Research;
 use App\Models\Initiative;
+use App\Models\Testimony;
 use App\Models\Screening;
 use App\Models\MediaCoverage;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +43,8 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('team', Team::class);
         Route::model('medium', Media::class);
         Route::model('media_coverage', MediaCoverage::class);
+        Route::model('testimony', Testimony::class);
+        Route::model('episode', Episode::class);
     }
 
     /**

@@ -1,23 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use App\Models\Media;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Episode;
+use App\Http\Resources\EpisodeResource;
 
-class MediaController extends Controller
+class EpisodeAPIController extends Controller
 {
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -25,8 +16,7 @@ class MediaController extends Controller
      */
     public function index(Request $request)
     {
-        $media = Media::paginate(12);
-        return view('media.index', ['media' => $media]);
+        return EpisodeResource::collection(Episode::translatedIn($request->locale)->ordered()->get());
     }
 
     /**
@@ -36,7 +26,7 @@ class MediaController extends Controller
      */
     public function create()
     {
-        return view('media.create');
+        //
     }
 
     /**
@@ -47,9 +37,7 @@ class MediaController extends Controller
      */
     public function store(Request $request)
     {
-        Media::create($request->all());
-
-        return redirect()->route('media.index');
+        //
     }
 
     /**
@@ -69,9 +57,9 @@ class MediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Media $media)
+    public function edit($id)
     {
-        return view('media.edit', ['media' => $media]);
+        //
     }
 
     /**
@@ -81,11 +69,9 @@ class MediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Media $media)
+    public function update(Request $request, $id)
     {
-        $media->update($request->all());
-
-        return redirect()->route('media.index');
+        //
     }
 
     /**
@@ -94,10 +80,8 @@ class MediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Media $media)
+    public function destroy($id)
     {
-        $media->delete();
-
-        return redirect()->route('media.index');
+        //
     }
 }

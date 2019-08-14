@@ -109,12 +109,22 @@ return [
 
     'menu' => [
         'MAIN NAVIGATION',
-        // [
-        //     'text' => 'Blog',
-        //     'url'  => 'admin/blog',
-        //     'active' => ['admin/blog', 'content', 'admin/blog', 'regex:@^content/[0-9]+$@']
-        //     // 'can'  => 'manage-blog',
-        // ],
+        [
+            'text'        => 'Home',
+            'url'         => '#',
+            'submenu' => [
+              [
+                  'text' => 'Testimonies',
+                  'url'  => 'admin/testimony',
+                  'active' => ['admin/testimony', 'content', 'admin/testimony', 'regex:@^content/[0-9]+$@'],
+              ],
+              [
+                  'text' => 'Supporter',
+                  'url'  => 'admin/supporter',
+                  'active' => ['admin/supporter', 'content', 'admin/supporter', 'regex:@^content/[0-9]+$@'],
+              ],
+            ]
+        ],
         [
             'text'        => 'About',
             'url'         => '#',
@@ -128,6 +138,16 @@ return [
                     'text' => 'The Partners',
                     'url'  => 'admin/partner',
                     'active' => ['admin/partner', 'content', 'admin/partner', 'regex:@^content/[0-9]+$@'],
+                ],
+                // [
+                //     'text' => 'PSAs',
+                //     'url'  => 'admin/psas',
+                //     'active' => ['admin/psas', 'content', 'admin/psas', 'regex:@^content/[0-9]+$@'],
+                // ],
+                [
+                    'text' => 'Episode',
+                    'url'  => 'admin/episode',
+                    'active' => ['admin/episode', 'content', 'admin/episode', 'regex:@^content/[0-9]+$@'],
                 ],
               ]
         ],
