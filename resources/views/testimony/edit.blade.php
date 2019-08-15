@@ -38,10 +38,6 @@
             <label for="">Order</label>
             <input type="integer" name="order"  value="{{ $testimony->order }}" class="form-control" id="order" placeholder="Order" >
         </div>
-        <div class="form-group">
-            <label for="">Date</label>
-            <input type="datetime-local" name="created_at"  value="{{ $testimony->created_at->format('Y-m-d\Th:m') }}" class="form-control" id="created_at" placeholder="Date" >
-        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </div>
     </form>

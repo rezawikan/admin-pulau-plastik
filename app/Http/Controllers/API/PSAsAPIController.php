@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Testimony;
+use App\Http\Resources\SupporterResource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\TestimonyResource;
+use App\Models\Psas;
 
-class TestimonyAPIController extends Controller
+class PSAsAPIController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        return TestimonyResource::collection(Testimony::translatedIn($request->locale)->ordered('desc')->get());
+        return SupporterResource::collection(Psas::ordered()->get());
     }
 
     /**

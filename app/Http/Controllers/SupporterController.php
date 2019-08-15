@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
-use App\Models\Testimony;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\TestimonyResource;
+use App\Models\Supporter;
 
-class TestimonyAPIController extends Controller
+class SupporterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +14,8 @@ class TestimonyAPIController extends Controller
      */
     public function index(Request $request)
     {
-        return TestimonyResource::collection(Testimony::translatedIn($request->locale)->ordered('desc')->get());
+        $supporters = Supporter::ordered()->paginate(24);
+        return view('supporter.index', ['supporters' => $supporters ]);
     }
 
     /**
@@ -26,7 +25,7 @@ class TestimonyAPIController extends Controller
      */
     public function create()
     {
-        //
+        return view('supporter.create');
     }
 
     /**
@@ -37,7 +36,9 @@ class TestimonyAPIController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Supporter::create($request->all());
+
+        return redirect()->route('supporter.index');
     }
 
     /**
@@ -57,9 +58,9 @@ class TestimonyAPIController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Supporter $supporter)
     {
-        //
+        return view('supporter.edit', ['supporter' => $supporter]);
     }
 
     /**
@@ -69,9 +70,11 @@ class TestimonyAPIController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Supporter $supporter)
     {
-        //
+        $supporter->update($request->all());
+
+        return redirect()->route('supporter.index');
     }
 
     /**
@@ -80,8 +83,10 @@ class TestimonyAPIController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Supporter $supporter)
     {
-        //
+        $supporter->delete();
+
+        return redirect()->route('supporter.index');
     }
 }

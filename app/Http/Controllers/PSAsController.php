@@ -1,22 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
-use App\Models\Testimony;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\TestimonyResource;
+use App\Models\Psas;
 
-class TestimonyAPIController extends Controller
+class PSAsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        return TestimonyResource::collection(Testimony::translatedIn($request->locale)->ordered('desc')->get());
+        $psas = Psas::ordered()->paginate(24);
+        return view('psas.index', ['psas' => $psas ]);
     }
 
     /**
@@ -26,7 +25,7 @@ class TestimonyAPIController extends Controller
      */
     public function create()
     {
-        //
+        return view('psas.create');
     }
 
     /**
@@ -37,7 +36,9 @@ class TestimonyAPIController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Psas::create($request->all());
+
+        return redirect()->route('psas.index');
     }
 
     /**
@@ -57,9 +58,9 @@ class TestimonyAPIController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Psas $psa)
     {
-        //
+        return view('psas.edit', ['psa' => $psa]);
     }
 
     /**
@@ -69,9 +70,11 @@ class TestimonyAPIController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Psas $psas)
     {
-        //
+        $psas->update($request->all());
+
+        return redirect()->route('psas.index');
     }
 
     /**
@@ -80,8 +83,10 @@ class TestimonyAPIController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Psas $psas)
     {
-        //
+        $psas->delete();
+
+        return redirect()->route('psas.index');
     }
 }

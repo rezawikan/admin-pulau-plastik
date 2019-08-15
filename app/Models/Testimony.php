@@ -12,6 +12,6 @@ class Testimony extends Model implements TranslatableContract
     use Translatable, Orderable;
 
     public $translatedAttributes = ['position', 'summary'];
-    protected $fillable = ['name', 'order','created_at'];
+    protected $fillable = ['name', 'order'];
 
 }

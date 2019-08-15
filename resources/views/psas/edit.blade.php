@@ -1,33 +1,33 @@
 @extends('adminlte::page')
 
-@section('title', 'Update Supporter')
+@section('title', 'Update PSAs')
 
 @section('content')
   <div class="container">
-      <form class="" action="{{ route('supporter.update',['id' => $supporter->id ]) }}" method="POST">
+      <form class="" action="{{ route('psas.update',['id' => $psa->id ]) }}" method="POST">
           @csrf
           @method('PUT')
           <div class="form-group">
               <label for="">Link</label>
-              <input type="text" name="link" value="{{ $supporter->link }}" class="form-control" placeholder="Link - Optional">
+              <input type="text" name="link" value="{{ $psa->link }}" class="form-control" placeholder="Link - Optional">
           </div>
           <div class="form-group">
               <label for="">Order</label>
-              <input type="number" name="order" value="{{ $supporter->order }}" class="form-control" placeholder="Order" >
+              <input type="number" name="order" value="{{ $psa->order }}" class="form-control" placeholder="Order" >
           </div>
           <div class="form-group">
-              <label for="">Supporter Image</label>
+              <label for="">PSAs Image</label>
               <div class="input-group">
                   <span class="input-group-btn">
                       <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
                           <i class="fa fa-picture-o"></i> Choose
                       </a>
                   </span>
-                  <input id="thumbnail" value="{{ $supporter->image }}" class="form-control" type="text" name="image">
+                  <input id="thumbnail" value="{{ $psa->image }}" class="form-control" type="text" name="image">
 
               </div>
               <span>Please take/put image on the supporter folder (scale 3:1)</span><br>
-              <img id="holder" src="{{ config('app.url').$supporter->image  }}" style="margin-top:15px;max-height:100px;">
+              <img id="holder" src="{{ config('app.url').$psa->image  }}" style="margin-top:15px;max-height:100px;">
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
       </form>

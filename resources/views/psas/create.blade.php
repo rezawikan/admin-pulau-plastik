@@ -1,10 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', 'Create Supporter')
+@section('title', 'Create PSAs')
 
 @section('content')
 <div class="container">
-    <form class="" action="{{ route('supporter.store') }}" method="POST">
+    <form class="" action="{{ route('psas.store') }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="">Link</label>

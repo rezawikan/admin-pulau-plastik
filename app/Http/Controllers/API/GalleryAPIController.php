@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Testimony;
+use App\Http\Resources\GalleryResource;
+use App\Models\Gallery;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\TestimonyResource;
 
-class TestimonyAPIController extends Controller
+class GalleryAPIController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class TestimonyAPIController extends Controller
      */
     public function index(Request $request)
     {
-        return TestimonyResource::collection(Testimony::translatedIn($request->locale)->ordered('desc')->get());
+        return galleryResource::collection(Gallery::latest()->paginate(24));
     }
 
     /**

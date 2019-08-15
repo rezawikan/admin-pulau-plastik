@@ -26,7 +26,7 @@
                   <input id="thumbnail" value="{{ $partner->image }}" class="form-control" type="text" name="image">
 
               </div>
-              <span>Please take/put image on the partner folder (scale 3:1)</span>
+              <span>Please take/put image on the partner folder (scale 3:1)</span><br>
               <img id="holder" src="{{ config('app.url').$partner->image  }}" style="margin-top:15px;max-height:100px;">
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>

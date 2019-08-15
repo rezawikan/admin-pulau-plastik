@@ -139,11 +139,11 @@ return [
                     'url'  => 'admin/partner',
                     'active' => ['admin/partner', 'content', 'admin/partner', 'regex:@^content/[0-9]+$@'],
                 ],
-                // [
-                //     'text' => 'PSAs',
-                //     'url'  => 'admin/psas',
-                //     'active' => ['admin/psas', 'content', 'admin/psas', 'regex:@^content/[0-9]+$@'],
-                // ],
+                [
+                    'text' => 'PSAs',
+                    'url'  => 'admin/psas',
+                    'active' => ['admin/psas', 'content', 'admin/psas', 'regex:@^content/[0-9]+$@'],
+                ],
                 [
                     'text' => 'Episode',
                     'url'  => 'admin/episode',

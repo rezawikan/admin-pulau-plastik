@@ -50,8 +50,7 @@ class TestimonyController extends Controller
     {
         $data = [
           'name'      => $request->name,
-          'order'      => $request->order,
-          'created_at' => Carbon::parse($request->created_at)->format('Y-m-d H:i:s')
+          'order'      => $request->order
         ];
 
         foreach (config('translatable.locales') as $key => $value) {
@@ -101,8 +100,7 @@ class TestimonyController extends Controller
     {
         $data = [
           'name'      => $request->name,
-          'order'      => $request->order,
-          'created_at' => Carbon::parse($request->created_at)->format('Y-m-d H:i:s')
+          'order'      => $request->order
         ];
 
         foreach (config('translatable.locales') as $key => $value) {

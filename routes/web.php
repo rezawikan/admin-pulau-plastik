@@ -29,6 +29,8 @@ Route::resource('admin/media-coverage', 'MediaCoverageController');
 Route::resource('admin/gallery', 'GalleryController');
 Route::resource('admin/testimony', 'TestimonyController');
 Route::resource('admin/episode', 'EpisodeController');
+Route::resource('admin/supporter', 'SupporterController');
+Route::resource('admin/psas', 'PsasController');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
