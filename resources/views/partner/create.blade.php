@@ -25,7 +25,7 @@
                 <input id="thumbnail" class="form-control" type="text" name="image">
 
             </div>
-            <span>Please take/put image on the partner folder (scale 3:1)</span><br>
+            <span>Please take/put image on the partner folder (scale 2:1)</span><br>
             <img id="holder" style="margin-top:15px;max-height:100px;">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

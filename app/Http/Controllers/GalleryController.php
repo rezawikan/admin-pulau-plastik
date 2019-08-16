@@ -98,6 +98,6 @@ class GalleryController extends Controller
     {
         $gallery->delete();
 
-        return view('gallery.index');
+        return redirect()->route('gallery.index');
     }
 }
