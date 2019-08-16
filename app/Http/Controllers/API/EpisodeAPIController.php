@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Episode;
 use App\Http\Resources\EpisodeResource;
+use App\Http\Requests\LocaleRequest;
 
 class EpisodeAPIController extends Controller
 {
@@ -14,7 +15,7 @@ class EpisodeAPIController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(LocaleRequest $request)
     {
         return EpisodeResource::collection(Episode::translatedIn($request->locale)->ordered()->get());
     }

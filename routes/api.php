@@ -29,6 +29,7 @@ Route::get('partner', 'API\PartnerAPIController@index');
 Route::get('supporter', 'API\SupporterAPIController@index');
 Route::get('psas', 'API\PSAsAPIController@index');
 Route::get('gallery', 'API\GalleryAPIController@index');
+Route::get('merchandise', 'API\MerchandiseAPIController@index');
 Route::get('media-coverage', 'API\MediaCoverageAPIController@index');
 Route::get('request-screening', 'API\EmailFireController@screenings');
 Route::get('request-contact', 'API\EmailFireController@contact');

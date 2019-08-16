@@ -6,6 +6,7 @@ use App\Models\MediaCoverage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\MediaCoverageResource;
+use App\Http\Requests\LocaleRequest;
 
 class MediaCoverageAPIController extends Controller
 {
@@ -14,7 +15,7 @@ class MediaCoverageAPIController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(LocaleRequest $request)
     {
         return MediaCoverageResource::collection(MediaCoverage::translatedIn($request->locale)->latest()->paginate(24));
     }

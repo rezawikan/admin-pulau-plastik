@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BlogResource extends JsonResource
+class MerchandiseResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,12 +19,10 @@ class BlogResource extends JsonResource
         }
 
         return [
-          'id'          => $this->id,
-          'image'       => config('app.url').$this->image,
-          'title'       => $this->translate($request->locale)->title,
-          'slug'        => $this->translate($request->locale)->slug,
-          'author'      => $this->author->name,
-          'created_at'  => $this->created_at->format('d M, Y')
+          'title'     => $this->translate($request->locale)->title,
+          'summary'   => $this->translate($request->locale)->summary,
+          'content'   => $this->translate($request->locale)->content,
+          'image'     => config('app.url'). $this->image
         ];
     }
 }

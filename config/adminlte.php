@@ -207,11 +207,14 @@ return [
               ]
         ],
         // 'ACCOUNT SETTINGS',
-        // [
-        //     'text' => 'Profile',
-        //     'url'  => 'admin/settings',
-        //     'icon' => 'user',
-        // ],
+        [
+            'text' => 'Merchandise',
+            'url'  => 'admin/merchandise',
+        ],
+        [
+            'text' => 'Author',
+            'url'  => 'admin/author',
+        ],
         // [
         //     'text' => 'Change Password',
         //     'url'  => 'admin/settings',

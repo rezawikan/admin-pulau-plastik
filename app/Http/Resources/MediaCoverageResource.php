@@ -14,13 +14,17 @@ class MediaCoverageResource extends JsonResource
      */
     public function toArray($request)
     {
-      return [
-        'id'          => $this->id,
-        'image'       => config('app.url'). $this->media->image,
-        'title'       => $this->translate($request->locale)->title,
-        'summary'     => $this->translate($request->locale)->summary,
-        'link'        => $this->link,
-        'created_at'  => $this->created_at->format('d M, Y')
-      ];
+        if (empty($this->translate($request->locale)->title)) {
+          return;
+        }
+        
+        return [
+          'id'          => $this->id,
+          'image'       => config('app.url'). $this->media->image,
+          'title'       => $this->translate($request->locale)->title,
+          'summary'     => $this->translate($request->locale)->summary,
+          'link'        => $this->link,
+          'created_at'  => $this->created_at->format('d M, Y')
+        ];
     }
 }

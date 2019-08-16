@@ -6,6 +6,7 @@ use App\Models\Testimony;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TestimonyResource;
+use App\Http\Requests\LocaleRequest;
 
 class TestimonyAPIController extends Controller
 {
@@ -14,7 +15,7 @@ class TestimonyAPIController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(LocaleRequest $request)
     {
         return TestimonyResource::collection(Testimony::translatedIn($request->locale)->ordered('desc')->get());
     }

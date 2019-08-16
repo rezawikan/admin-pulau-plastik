@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Initiative;
+use App\Models\Merchandise;
+use App\Http\Resources\MerchandiseResource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\InitiativeResource;
-use App\Http\Resources\BlogDetailResource;
 use App\Http\Requests\LocaleRequest;
 
-class InitiativeAPIController extends Controller
+class MerchandiseAPIController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +17,7 @@ class InitiativeAPIController extends Controller
      */
     public function index(LocaleRequest $request)
     {
-        return InitiativeResource::collection(Initiative::translatedIn($request->locale)->latest()->paginate(24));
+        return MerchandiseResource::collection(Merchandise::translatedIn($request->locale)->latest()->paginate(12));
     }
 
     /**
@@ -48,11 +47,9 @@ class InitiativeAPIController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $slug)
+    public function show($id)
     {
-        return new BlogDetailResource(
-          Initiative::whereTranslation('slug', $slug)->first()
-        );
+        //
     }
 
     /**

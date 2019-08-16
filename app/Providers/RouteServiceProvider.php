@@ -12,7 +12,9 @@ use App\Models\Initiative;
 use App\Models\Testimony;
 use App\Models\Screening;
 use App\Models\Supporter;
+use App\Models\Merchandise;
 use App\Models\MediaCoverage;
+use App\Models\Author;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -49,6 +51,8 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('episode', Episode::class);
         Route::model('supporter', Supporter::class);
         Route::model('psa', Psas::class);
+        Route::model('merchandise', Merchandise::class);
+        Route::model('author', Author::class);
 
     }
 

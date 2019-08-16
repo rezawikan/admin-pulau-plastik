@@ -1,24 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
-use App\Models\Initiative;
+use App\Models\Author;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\InitiativeResource;
-use App\Http\Resources\BlogDetailResource;
-use App\Http\Requests\LocaleRequest;
 
-class InitiativeAPIController extends Controller
+class AuthorController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(LocaleRequest $request)
+    public function index(Request $request)
     {
-        return InitiativeResource::collection(Initiative::translatedIn($request->locale)->latest()->paginate(24));
+        $authors = Author::latest()->paginate(24);
+        return view('author.index', [ 'authors' => $authors]);
     }
 
     /**
@@ -28,7 +25,7 @@ class InitiativeAPIController extends Controller
      */
     public function create()
     {
-        //
+        return view('author.create');
     }
 
     /**
@@ -39,7 +36,9 @@ class InitiativeAPIController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Author::create($request->all());
+
+        return redirect()->route('author.index');
     }
 
     /**
@@ -48,11 +47,9 @@ class InitiativeAPIController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $slug)
+    public function show($id)
     {
-        return new BlogDetailResource(
-          Initiative::whereTranslation('slug', $slug)->first()
-        );
+        //
     }
 
     /**
@@ -61,9 +58,9 @@ class InitiativeAPIController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Author $author)
     {
-        //
+        return view('author.edit', [ 'author' => $author ]);
     }
 
     /**
@@ -73,9 +70,10 @@ class InitiativeAPIController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Author $author)
     {
-        //
+        $author->update($request->all());
+        return redirect()->route('author.index');
     }
 
     /**
@@ -84,8 +82,9 @@ class InitiativeAPIController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Author $author)
     {
-        //
+        $author->delete();
+        return redirect()->route('author.index');
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BlogResource;
 use App\Http\Resources\BlogDetailResource;
+use App\Http\Requests\LocaleRequest;
 
 class ResearchAPIController extends Controller
 {
@@ -15,7 +16,7 @@ class ResearchAPIController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(LocaleRequest $request)
     {
         return BlogResource::collection(Research::translatedIn($request->locale)->latest()->paginate(24));
     }

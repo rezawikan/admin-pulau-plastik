@@ -14,6 +14,10 @@ class EpisodeResource extends JsonResource
      */
     public function toArray($request)
     {
+        if (empty($this->translate($request->locale)->title)) {
+          return;
+        }
+        
         return [
           'id'       => $this->id,
           'order'    => $this->order,
