@@ -30,7 +30,7 @@ Route::resource('admin/gallery', 'GalleryController');
 Route::resource('admin/testimony', 'TestimonyController');
 Route::resource('admin/episode', 'EpisodeController');
 Route::resource('admin/supporter', 'SupporterController');
-Route::resource('admin/psas', 'PsasController');
+Route::resource('admin/psas', 'PSAsController');
 Route::resource('admin/merchandise', 'MerchandiseController');
 Route::resource('admin/author', 'AuthorController');
 
