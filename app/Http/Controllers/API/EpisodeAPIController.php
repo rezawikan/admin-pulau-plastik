@@ -17,7 +17,7 @@ class EpisodeAPIController extends Controller
      */
     public function index(LocaleRequest $request)
     {
-        return EpisodeResource::collection(Episode::translatedIn($request->locale)->ordered()->get());
+        return EpisodeResource::collection(Episode::translatedIn($request->locale)->ordered('asc')->get());
     }
 
     /**
