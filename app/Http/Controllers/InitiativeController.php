@@ -50,8 +50,7 @@ class InitiativeController extends Controller
     {
         $data = [
           'image'      => $request->image,
-          'link'       => $request->link,
-          'created_at' => Carbon::parse($request->created_at)->format('Y-m-d H:i:s')
+          'link'       => $request->link
         ];
 
         foreach (config('translatable.locales') as $key => $value) {
@@ -100,8 +99,7 @@ class InitiativeController extends Controller
     {
         $data = [
           'link'       => $request->link,
-          'image'      => $request->image,
-          'created_at' => Carbon::parse($request->created_at)->format('Y-m-d H:i:s')
+          'image'      => $request->image
         ];
         foreach (config('translatable.locales') as $key => $value) {
           if (empty($request->{$value.'_title'})) {

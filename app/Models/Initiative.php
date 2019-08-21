@@ -13,6 +13,6 @@ class Initiative extends Model implements TranslatableContract
     use Translatable;
 
     public $translatedAttributes = ['title', 'summary'];
-    protected $fillable = ['image','link','created_at'];
+    protected $fillable = ['image','link'];
 
 }

@@ -17,14 +17,13 @@ class InitiativeResource extends JsonResource
         if (empty($this->translate($request->locale)->title)) {
           return;
         }
-        
+
         return [
           'id'          => $this->id,
           'image'       => config('app.url').$this->image,
           'title'       => $this->translate($request->locale)->title,
           'summary'     => $this->translate($request->locale)->summary,
-          'link'        => $this->link,
-          'created_at'  => $this->created_at->format('d M, Y')
+          'link'        => $this->link
         ];
     }
 }

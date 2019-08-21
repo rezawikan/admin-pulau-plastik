@@ -35,10 +35,6 @@
             <input type="text" name="link"  value="{{ $initiative->link }}" class="form-control" id="created_at" placeholder="Link" >
         </div>
         <div class="form-group">
-            <label for="">Date</label>
-            <input type="datetime-local" name="created_at"  value="{{ $initiative->created_at->format('Y-m-d\Th:m') }}" class="form-control" id="created_at" placeholder="Date" >
-        </div>
-        <div class="form-group">
             <label for="">Thumbnail Image</label>
             <div class="input-group">
                 <span class="input-group-btn">
