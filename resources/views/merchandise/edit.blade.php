@@ -36,7 +36,7 @@
       <div class="container">
         <div class="form-group">
             <label for="price">Order</label>
-            <input type="number" name="order" class="form-control"  placeholder="Order">
+            <input type="number" value="{{ $merchandise->order }}" name="order" class="form-control"  placeholder="Order">
         </div>
         <div class="form-group">
             <label for="">Thumbnail Image</label>
