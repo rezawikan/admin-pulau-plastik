@@ -16,7 +16,7 @@ class ResearchResource extends JsonResource
     {
         return [
           'title' => $this->title,
-          'link'  => $this->link,
+          'link'  => config('app.url').$this->link,
           'type'  => $this->type,
           'lang'  => $this->lang
         ];
