@@ -16,7 +16,7 @@ class SupporterAPIController extends Controller
      */
     public function index()
     {
-        return SupporterResource::collection(Supporter::ordered()->get());
+        return SupporterResource::collection(Supporter::ordered('asc')->get());
     }
 
     /**
