@@ -16,7 +16,7 @@ class PartnerAPIController extends Controller
      */
     public function index(Request $request)
     {
-        return PartnerResource::collection(Partner::ordered()->paginate(24));
+        return PartnerResource::collection(Partner::ordered('asc')->paginate(24));
     }
 
     /**
