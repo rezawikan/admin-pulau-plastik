@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'The Team')
+@section('title', 'Gallery')
 
 @section('content')
   <a href="{{ route('gallery.create') }}" class="btn btn-primary">Create Gallery</a>
