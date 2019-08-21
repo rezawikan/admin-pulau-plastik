@@ -14,7 +14,7 @@ class PSAsController extends Controller
      */
     public function index()
     {
-        $psas = Psas::ordered('desc')->paginate(24);
+        $psas = Psas::ordered()->paginate(24);
         return view('psas.index', ['psas' => $psas ]);
     }
 

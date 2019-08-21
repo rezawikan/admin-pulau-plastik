@@ -16,7 +16,7 @@ class PSAsAPIController extends Controller
      */
     public function index()
     {
-        return SupporterResource::collection(Psas::ordered('desc')->get());
+        return SupporterResource::collection(Psas::ordered()->get());
     }
 
     /**
