@@ -17,7 +17,7 @@ class MerchandiseAPIController extends Controller
      */
     public function index(LocaleRequest $request)
     {
-        return MerchandiseResource::collection(Merchandise::translatedIn($request->locale)->latest()->paginate(12));
+        return MerchandiseResource::collection(Merchandise::translatedIn($request->locale)->latest()->paginate(9));
     }
 
     /**

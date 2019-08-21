@@ -17,7 +17,7 @@ class MediaCoverageAPIController extends Controller
      */
     public function index(LocaleRequest $request)
     {
-        return MediaCoverageResource::collection(MediaCoverage::translatedIn($request->locale)->latest()->paginate(24));
+        return MediaCoverageResource::collection(MediaCoverage::translatedIn($request->locale)->latest()->paginate(9));
     }
 
     /**

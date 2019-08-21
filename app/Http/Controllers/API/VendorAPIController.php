@@ -17,7 +17,7 @@ class VendorAPIController extends Controller
      */
     public function index(LocaleRequest $request)
     {
-        return VendorResource::collection(Vendor::translatedIn($request->locale)->latest()->paginate(12));
+        return VendorResource::collection(Vendor::translatedIn($request->locale)->latest()->paginate(9));
     }
 
     /**

@@ -18,7 +18,7 @@ class InitiativeAPIController extends Controller
      */
     public function index(LocaleRequest $request)
     {
-        return InitiativeResource::collection(Initiative::translatedIn($request->locale)->latest()->paginate(24));
+        return InitiativeResource::collection(Initiative::translatedIn($request->locale)->latest()->paginate(9));
     }
 
     /**

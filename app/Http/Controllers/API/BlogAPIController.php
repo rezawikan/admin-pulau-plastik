@@ -18,7 +18,7 @@ class BlogAPIController extends Controller
      */
     public function index(LocaleRequest $request)
     {
-       return BlogResource::collection(Blog::translatedIn($request->locale)->latest()->paginate(24));
+       return BlogResource::collection(Blog::translatedIn($request->locale)->latest()->paginate(9));
     }
 
     /**

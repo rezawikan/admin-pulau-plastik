@@ -16,7 +16,7 @@ class ResearchAPIController extends Controller
      */
     public function index(Request $request)
     {
-        return ResearchResource::collection(Research::latest()->paginate(24));
+        return ResearchResource::collection(Research::latest()->paginate(9));
     }
 
     /**
