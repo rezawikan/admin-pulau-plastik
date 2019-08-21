@@ -59,7 +59,6 @@ class MediaCoverageController extends Controller
               continue;
           }
           $data[$value]['title']   = $request->{$value.'_title'} ?? null;
-          $data[$value]['summary'] = $request->{$value.'_summary'} ?? null;
         }
 
         $media = MediaCoverage::create($data);
@@ -109,7 +108,6 @@ class MediaCoverageController extends Controller
               continue;
           }
           $data[$value]['title']   = $request->{$value.'_title'} ?? null;
-          $data[$value]['summary'] = $request->{$value.'_summary'} ?? null;
         }
 
         $coverage->update($data);

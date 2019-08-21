@@ -7,24 +7,24 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">Title</th>
+        <th scope="col">Name</th>
         <th scope="col">Summary</th>
-        <th scope="col">Translated</th>
+        <th scope="col">Price</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
       @foreach ($merchandises as $merchandise)
         <tr>
-          <td>{{ substr($merchandise->title ?? 'null', 0, 15)  }} | {{ substr($merchandise->translate('id')->title ?? 'null', 0, 15) }}</td>
+          <td>{{ substr($merchandise->name ?? 'null', 0, 15)  }} | {{ substr($merchandise->translate('id')->name ?? 'null', 0, 15) }}</td>
           <td>{{ substr($merchandise->summary ?? 'null', 0, 15)  }} | {{ substr($merchandise->translate('id')->summary ?? 'null', 0, 15) }}</td>
-          <td>{{ $merchandise->hasTranslation('id') == 1 ? 'Available' : 'Not Available' }}</td>
+          <td>{{ $merchandise->price }}</td>
           <td>
             <form class="" action="{{ route('merchandise.destroy', ['id' => $merchandise->id]) }}" method="POST">
               {{ csrf_field() }}
               {{ method_field('DELETE') }}
             <a href="{{ route('merchandise.edit',['id' => $merchandise->id]) }}" class="btn btn-primary btn-xs">Edit</a>
-            <input type="submit" value="Delete"class="btn btn-primary btn-xs js-submit-confirm data" data-confirm-message="You will be delete distribution target {{strtolower($merchandise->title)}}">
+            <input type="submit" value="Delete"class="btn btn-primary btn-xs js-submit-confirm data" data-confirm-message="You will be delete distribution target {{strtolower($merchandise->name)}}">
             </form>
           </td>
           </td>

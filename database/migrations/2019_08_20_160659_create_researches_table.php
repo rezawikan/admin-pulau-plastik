@@ -14,10 +14,12 @@ class CreateResearchesTable extends Migration
     public function up()
     {
         Schema::create('researches', function (Blueprint $table) {
-          $table->increments('id');
-          $table->integer('author_id')->unsigned();
-          $table->text('image')->default(null);
-          $table->timestamps();
+            $table->increments('id');
+            $table->string('title');
+            $table->text('link');
+            $table->string('type');
+            $table->string('lang');
+            $table->timestamps();
         });
     }
 

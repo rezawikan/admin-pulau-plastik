@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class MerchandiseResource extends JsonResource
+class VendorResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,14 +14,14 @@ class MerchandiseResource extends JsonResource
      */
     public function toArray($request)
     {
-        if (empty($this->translate($request->locale)->name)) {
+        if (empty($this->translate($request->locale)->title)) {
           return;
         }
 
         return [
-          'name'      => $this->translate($request->locale)->name,
+          'title'     => $this->translate($request->locale)->title,
           'summary'   => $this->translate($request->locale)->summary,
-          'price'     => $this->translate($request->locale)->price,
+          'content'   => $this->translate($request->locale)->content,
           'image'     => config('app.url'). $this->image
         ];
     }

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Create Merchandise')
+@section('title', 'Create Vendor')
 
 @section('content')
 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -11,22 +11,22 @@
     @endforeach
 </ul>
 <div class="tab-content">
-    <form class="" action="{{ route('merchandise.store') }}" method="POST">
+    <form class="" action="{{ route('vendor.store') }}" method="POST">
         @csrf
         @foreach (config('translatable.locales') as $key => $value)
         <div class="tab-pane fade show active" id="{{ $value }}" role="tabpanel" aria-labelledby="{{ $value }}-tab">
             <div class="container">
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" name="{{ $value }}_name" class="form-control" id="{{ $value }}-name" placeholder="Name">
+                    <label for="title">Title</label>
+                    <input type="text" name="{{ $value }}_title" class="form-control" id="{{ $value }}-title" placeholder="Title">
                 </div>
                 <div class="form-group">
                     <label for="">Summary</label>
                     <textarea type="text" name="{{ $value }}_summary" class="form-control" id="{{ $value }}-summary" placeholder="Content" ></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="price">Price</label>
-                    <input type="number" name="{{ $value }}_price" class="form-control" id="{{ $value }}-price" placeholder="Price">
+                    <label for="">Content</label>
+                    <textarea type="text" name="{{ $value }}_content" class="form-control text-editor" id="{{ $value }}-content" placeholder="Content" ></textarea>
                 </div>
             </div>
         </div>
@@ -77,13 +77,26 @@
 @endpush
 
 @push('js')
+  <!-- CKEditor init -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.11/ckeditor.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.11/adapters/jquery.js"></script>
   <script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
   <script>
       $(function() {
           $('#myTab li:first-child a').tab('show')
       })
-
+  </script>
+  <script>
       var route_prefix = "{{ url(config('lfm.url_prefix')) }}";
+  </script>
+  <script>
+      $('.text-editor').ckeditor({
+          height: 600,
+          filebrowserImageBrowseUrl: route_prefix + '?type=Images',
+          filebrowserImageUploadUrl: route_prefix + '/upload?type=Images&_token={{csrf_token()}}',
+          filebrowserBrowseUrl: route_prefix + '?type=Files',
+          filebrowserUploadUrl: route_prefix + '/upload?type=Files&_token={{csrf_token()}}'
+      });
 
       $('#lfm').filemanager('image', {prefix: route_prefix});
   </script>

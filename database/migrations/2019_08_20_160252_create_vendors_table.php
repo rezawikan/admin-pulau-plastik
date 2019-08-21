@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddRelationToAuthorsTable extends Migration
+class CreateVendorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddRelationToAuthorsTable extends Migration
      */
     public function up()
     {
-        Schema::table('blogs', function (Blueprint $table) {
-            $table->foreign('author_id')->references('id')->on('authors');
+        Schema::create('vendors', function (Blueprint $table) {
+            $table->increments('id');
+            $table->text('image');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AddRelationToAuthorsTable extends Migration
      */
     public function down()
     {
-        Schema::table('blogs', function (Blueprint $table) {
-            $table->dropForeign('blogs_author_id_foreign');
-        });
+        Schema::dropIfExists('vendors');
     }
 }

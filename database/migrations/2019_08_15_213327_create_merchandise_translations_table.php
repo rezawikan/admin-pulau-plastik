@@ -17,9 +17,9 @@ class CreateMerchandiseTranslationsTable extends Migration
             $table->increments('id');
             $table->integer('merchandise_id')->unsigned();
             $table->string('locale')->index();
-            $table->string('title');
+            $table->string('name');
             $table->text('summary');
-            $table->text('content');
+            $table->text('price');
 
             $table->unique(['merchandise_id', 'locale']);
             $table->foreign('merchandise_id')->references('id')->on('merchandises')->onDelete('cascade');

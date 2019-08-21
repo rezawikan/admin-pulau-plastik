@@ -10,7 +10,7 @@ class MediaCoverage extends Model
 {
     use Translatable;
 
-    public $translatedAttributes = ['title', 'summary'];
+    public $translatedAttributes = ['title'];
     protected $fillable = ['media_id','link','created_at'];
 
     public function media() {

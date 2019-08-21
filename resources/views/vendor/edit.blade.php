@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Create Media Coverage')
+@section('title', 'Create Vendor')
 
 @section('content')
 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -11,23 +11,23 @@
     @endforeach
 </ul>
 <div class="tab-content">
-    <form class="" action="{{ route('merchandise.update',['id' => $merchandise->id ]) }}" method="POST">
+    <form class="" action="{{ route('vendor.update',['id' => $vendor->id ]) }}" method="POST">
       @method('PUT')
       @csrf
       @foreach (config('translatable.locales') as $key => $value)
       <div class="tab-pane fade show active" id="{{ $value }}" role="tabpanel" aria-labelledby="{{ $value }}-tab">
           <div class="container">
               <div class="form-group">
-                  <label for="name">Name</label>
-                  <input type="text" value="{{ $merchandise->translate($value)->name ?? null }}" name="{{ $value }}_name" class="form-control" id="{{ $value }}-name" placeholder="Name">
+                  <label for="title">Title</label>
+                  <input type="text" value="{{ $vendor->translate($value)->title ?? null }}" name="{{ $value }}_title" class="form-control" id="{{ $value }}-title" placeholder="Title">
               </div>
               <div class="form-group">
                   <label for="">Summary</label>
-                  <textarea type="text" name="{{ $value }}_summary" class="form-control" id="{{ $value }}-summary" placeholder="Content" >{{ $merchandise->translate($value)->summary ?? null }}</textarea>
+                  <textarea type="text" name="{{ $value }}_summary" class="form-control" id="{{ $value }}-summary" placeholder="Content" >{{ $vendor->translate($value)->summary ?? null }}</textarea>
               </div>
               <div class="form-group">
-                  <label for="price">Price</label>
-                  <input type="number" name="{{ $value }}_price" class="form-control" value="{{ $merchandise->translate($value)->price ?? null }}" id="{{ $value }}-price" placeholder="Price">
+                  <label for="">Content</label>
+                  <textarea type="text" name="{{ $value }}_content" class="form-control text-editor" id="{{ $value }}-content" placeholder="Content" >{{ $vendor->translate($value)->content ?? null }}</textarea>
               </div>
           </div>
       </div>
@@ -42,11 +42,11 @@
                         <i class="fa fa-picture-o"></i> Choose
                     </a>
                 </span>
-                <input id="thumbnail" class="form-control" type="text" name="image" value="{{ $merchandise->image }}">
+                <input id="thumbnail" class="form-control" type="text" name="image" value="{{ $vendor->image }}">
 
             </div>
             <span>Please take/put image on the gallary folder</span><br>
-            <img src="{{ config('app.url').$merchandise->image  }}" id="holder" style="margin-top:15px;max-height:100px;max-width:100px;">
+            <img src="{{ config('app.url').$vendor->image  }}" id="holder" style="margin-top:15px;max-height:100px;max-width:100px;">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </div>

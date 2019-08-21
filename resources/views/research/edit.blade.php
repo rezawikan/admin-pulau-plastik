@@ -3,62 +3,47 @@
 @section('title', 'Edit Research')
 
 @section('content')
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-    @foreach (config('translatable.locales') as $key => $value)
-    <li class="nav-item">
-        <a class="nav-link {{ $key == 0 ? 'active' : '' }}" id="{{ $value }}-tab" data-toggle="tab" href="#{{ $value }}" role="tab" aria-controls="home" aria-selected="true">{{ strtoupper($value) }}</a>
-    </li>
-    @endforeach
-</ul>
-<div class="tab-content">
-    <form class="" action="{{ route('research.update',['id' => $research->id ]) }}" method="POST">
-      @method('PUT')
-      @csrf
-      @foreach (config('translatable.locales') as $key => $value)
-      <div class="tab-pane fade show active" id="{{ $value }}" role="tabpanel" aria-labelledby="{{ $value }}-tab">
-          <div class="container">
-              <div class="form-group">
-                  <label for="title">Title</label>
-                  <input type="text" value="{{ $research->translate($value)->title ?? null }}" name="{{ $value }}_title" class="form-control" id="{{ $value }}-title" placeholder="Title">
-              </div>
-              <div class="form-group">
-                  <label for="">Content</label>
-                  <textarea type="text" name="{{ $value }}_content" class="form-control text-editor" id="{{ $value }}-content" placeholder="Content" >{{ $research->translate($value)->content ?? null }}</textarea>
+  <div class="container">
+      <form class="" action="{{ route('research.update', ['id' => $research->id]) }}" method="POST">
+          @method('PUT')
+          @csrf
+          <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" name="title" value="{{ $research->title}}" class="form-control" placeholder="Title" >
+          </div>
+          <div class="form-group">
+              <label for="type">Type</label>
+              <select class="form-control" name="type" value="{{ $research->type}}">
+                <option>Please select</option>
+                <option {{ $research->type == 1 ? 'selected': '' }}  value="1">Dokumen Regulasi/Kebijakan Pemerintah</option>
+                <option {{ $research->type == 2 ? 'selected': '' }}  value="2">Penelitian Organisasi Independen</option>
+                <option {{ $research->type == 3 ? 'selected': '' }}  value="3">Penelitian dari Sektor Swasta</option>
+                <option {{ $research->type == 4 ? 'selected': '' }}  value="4">Jurnal Akademis</option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="type">Lang</label>
+              <select class="form-control" name="lang" value="{{ $research->lang}}">
+                <option>Please select</option>
+                <option {{ $research->lang == 1 ? 'selected': '' }} value="1">Indonesia</option>
+                <option {{ $research->lang == 2 ? 'selected': '' }} value="2">English</option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="">Document</label>
+              <div class="input-group">
+                  <span class="input-group-btn">
+                      <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                          <i class="fa fa-picture-o"></i> Choose
+                      </a>
+                  </span>
+                  <input id="thumbnail" class="form-control" type="text" name="link" value="{{ $research->link}}">
+
               </div>
           </div>
-      </div>
-      @endforeach
-
-      <div class="container">
-        <div class="form-group">
-            <label for="">Author</label>
-            <select name="author" class="custom-select form-control">
-                <option selected>Select</option>
-                @foreach ($authors as $key => $value)
-                <option value="{{ $value->id }}" {{ $research->author->id == $value->id ? 'selected' : ''  }}>{{ $value->name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="">Date</label>
-            <input type="datetime-local" name="created_at"  value="{{ $value->created_at->format('Y-m-d\Th:m') }}" class="form-control" id="created_at" placeholder="Date" >
-        </div>
-        <div class="form-group">
-            <label for="">Thumbnail Image</label>
-            <div class="input-group">
-                <span class="input-group-btn">
-                    <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                        <i class="fa fa-picture-o"></i> Choose
-                    </a>
-                </span>
-                <input id="thumbnail" value="{{ $research->image }}" class="form-control" type="text" name="image">
-            </div>
-            <img id="holder" src="{{ config('app.url').$research->image  }}" style="margin-top:15px;max-height:100px;">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </form>
-</div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+  </div>
 @stop
 
 @section('css')

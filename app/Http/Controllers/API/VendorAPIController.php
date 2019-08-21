@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Research;
+use App\Models\Vendor;
+use App\Http\Resources\VendorResource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ResearchResource;
+use App\Http\Requests\LocaleRequest;
 
-class ResearchAPIController extends Controller
+class VendorAPIController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(LocaleRequest $request)
     {
-        return ResearchResource::collection(Research::latest()->paginate(24));
+        return VendorResource::collection(Vendor::translatedIn($request->locale)->latest()->paginate(12));
     }
 
     /**
@@ -46,7 +47,7 @@ class ResearchAPIController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $slug)
+    public function show($id)
     {
         //
     }

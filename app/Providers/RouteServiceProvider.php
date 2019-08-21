@@ -15,6 +15,7 @@ use App\Models\Supporter;
 use App\Models\Merchandise;
 use App\Models\MediaCoverage;
 use App\Models\Author;
+use App\Models\Vendor;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -53,6 +54,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('psa', Psas::class);
         Route::model('merchandise', Merchandise::class);
         Route::model('author', Author::class);
+        Route::model('vendor', Vendor::class);
 
     }
 

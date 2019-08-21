@@ -26,7 +26,7 @@ class ResearchController extends Controller
      */
     public function index()
     {
-        $researches = Research::translated()->latest()->paginate(24);
+        $researches = Research::latest()->paginate(24);
         return view('research.index', ['researches' => $researches]);
     }
 
@@ -48,22 +48,7 @@ class ResearchController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
-          'author_id'  => $request->author,
-          'image'      => $request->image,
-          'created_at' => Carbon::parse($request->created_at)->format('Y-m-d H:i:s')
-        ];
-
-        foreach (config('translatable.locales') as $key => $value) {
-          if (empty($request->{$value.'_title'})) {
-              continue;
-          }
-          $data[$value]['title']   = $request->{$value.'_title'} ?? null;
-          $data[$value]['slug']    = str_slug($request->{$value.'_title'}) ?? null;
-          $data[$value]['content'] = $request->{$value.'_content'} ?? null;
-        }
-
-        Research::create($data);
+        Research::create($request->all());
 
         return redirect()->route('research.index');
     }
@@ -99,21 +84,7 @@ class ResearchController extends Controller
      */
     public function update(Request $request, Research $research)
     {
-        $data = [
-          'author_id'  => $request->author,
-          'image'      => $request->image,
-          'created_at' => Carbon::parse($request->created_at)->format('Y-m-d H:i:s')
-        ];
-        foreach (config('translatable.locales') as $key => $value) {
-          if (empty($request->{$value.'_title'})) {
-              continue;
-          }
-          $data[$value]['title']   = $request->{$value.'_title'} ?? null;
-          $data[$value]['slug']    = str_slug($request->{$value.'_title'}) ?? null;
-          $data[$value]['content'] = $request->{$value.'_content'} ?? null;
-        }
-
-        $research->update($data);
+        $research->update($request->all());
 
         return redirect()->route('research.index');
     }
@@ -126,7 +97,6 @@ class ResearchController extends Controller
      */
     public function destroy(Research $research)
     {
-        $research->deleteTranslations();
         $research->delete();
 
         return redirect()->route('research.index');

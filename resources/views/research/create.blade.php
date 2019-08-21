@@ -3,61 +3,46 @@
 @section('title', 'Create Research')
 
 @section('content')
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-    @foreach (config('translatable.locales') as $key => $value)
-    <li class="nav-item">
-        <a class="nav-link {{ $key == 0 ? 'active' : '' }}" id="{{ $value }}-tab" data-toggle="tab" href="#{{ $value }}" role="tab" aria-controls="home" aria-selected="true">{{ strtoupper($value) }}</a>
-    </li>
-    @endforeach
-</ul>
-<div class="tab-content">
-    <form class="" action="{{ route('research.store') }}" method="POST">
-        @csrf
-        @foreach (config('translatable.locales') as $key => $value)
-        <div class="tab-pane fade show active" id="{{ $value }}" role="tabpanel" aria-labelledby="{{ $value }}-tab">
-            <div class="container">
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" name="{{ $value }}_title" class="form-control" id="{{ $value }}-title" placeholder="Title" >
-                </div>
-                <div class="form-group">
-                    <label for="">Content</label>
-                    <textarea type="text" name="{{ $value }}_content" class="form-control text-editor" id="{{ $value }}-content" placeholder="Content" ></textarea>
-                </div>
-            </div>
-        </div>
-        @endforeach
+  <div class="container">
+      <form class="" action="{{ route('research.store') }}" method="POST">
+          @csrf
+          <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" name="title" class="form-control" placeholder="Title" >
+          </div>
+          <div class="form-group">
+              <label for="type">Type</label>
+              <select class="form-control" name="type">
+                <option>Please select</option>
+                <option value="1">Dokumen Regulasi/Kebijakan Pemerintah</option>
+                <option value="2">Penelitian Organisasi Independen</option>
+                <option value="3">Penelitian dari Sektor Swasta</option>
+                <option value="4">Jurnal Akademis</option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="type">Lang</label>
+              <select class="form-control" name="lang">
+                <option>Please select</option>
+                <option value="1">Indonesia</option>
+                <option value="2">English</option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="">Document</label>
+              <div class="input-group">
+                  <span class="input-group-btn">
+                      <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                          <i class="fa fa-picture-o"></i> Choose
+                      </a>
+                  </span>
+                  <input id="thumbnail" class="form-control" type="text" name="link">
 
-        <div class="container">
-            <div class="form-group">
-                <label for="">Author</label>
-                <select name="author"class="custom-select form-control">
-                    <option selected>Select</option>
-                    @foreach ($authors as $key => $value)
-                    <option value="{{ $value->id }}">{{ $value->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="">Date</label>
-                <input type="datetime-local" name="created_at" class="form-control" id="created_at" placeholder="Date" >
-            </div>
-            <div class="form-group">
-                <label for="">Thumbnail Image</label>
-                <div class="input-group">
-                    <span class="input-group-btn">
-                        <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                            <i class="fa fa-picture-o"></i> Choose
-                        </a>
-                    </span>
-                    <input id="thumbnail" class="form-control" type="text" name="image">
-                </div>
-                <img id="holder" style="margin-top:15px;max-height:100px;">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </form>
-</div>
+              </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+  </div>
 @stop
 
 @section('css')
@@ -107,6 +92,6 @@
         filebrowserUploadUrl: route_prefix + '/upload?type=Files&_token={{csrf_token()}}'
     });
 
-    $('#lfm').filemanager('image', {prefix: route_prefix});
+    $('#lfm').filemanager('file', {prefix: route_prefix});
 </script>
 @endpush

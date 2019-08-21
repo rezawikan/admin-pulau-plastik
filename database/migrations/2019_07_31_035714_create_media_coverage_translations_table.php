@@ -18,7 +18,6 @@ class CreateMediaCoverageTranslationsTable extends Migration
             $table->integer('media_coverage_id')->unsigned();
             $table->string('locale')->index();
             $table->string('title');
-            $table->text('summary');
 
             $table->unique(['media_coverage_id', 'locale']);
             $table->foreign('media_coverage_id')->references('id')->on('media_coverages')->onDelete('cascade');

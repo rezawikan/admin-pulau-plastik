@@ -8,17 +8,13 @@
     <thead>
       <tr>
         <th scope="col">Title</th>
-        <th scope="col">Content</th>
-        <th scope="col">Translated</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
       @foreach ($researches as $research)
         <tr>
-          <td>{{ substr($research->title ?? 'null', 0, 15)  }} | {{ substr($research->translate('id')->title ?? 'null', 0, 15) }}</td>
-          <td>{{ substr($research->content, 0, 30) }}...</td>
-          <td>{{ $research->hasTranslation('id') == 1 ? 'Available' : 'Not Available' }}</td>
+          <td>{{ $research->title }}</td>
           <td>
             <form class="" action="{{ route('research.destroy', ['id' => $research->id]) }}" method="POST">
               {{ csrf_field() }}

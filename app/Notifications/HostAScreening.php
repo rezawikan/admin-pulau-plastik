@@ -58,7 +58,8 @@ class HostAScreening extends Notification
           ->line('Numbers of Audience : '.$this->request->numbersOfAudience)
           ->line('Age of Audience : '.$this->request->ageOfAudience)
           ->line('Email : '.$this->request->email)
-          ->line('Short Description : '.$this->request->shortDescription)
+          ->line('Short Description About Pulau Plastik : '.$this->request->shortDescription_1)
+          ->line('I want to say : '.$this->request->shortDescription_2)
           ->markdown('mail.contact-us');
     }
 

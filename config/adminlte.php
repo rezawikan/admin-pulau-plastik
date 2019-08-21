@@ -204,6 +204,11 @@ return [
                     'url'  => 'admin/initiative',
                     'active' => ['admin/initiative', 'content', 'admin/initiative', 'regex:@^content/[0-9]+$@']
                 ],
+                [
+                    'text' => 'Vendor',
+                    'url'  => 'admin/vendor',
+                    'active' => ['admin/vendor', 'content', 'admin/vendor', 'regex:@^content/[0-9]+$@']
+                ],
               ]
         ],
         // 'ACCOUNT SETTINGS',

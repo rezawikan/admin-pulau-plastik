@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Merchandise;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 
-class MerchandiseController extends Controller
+class VendorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class MerchandiseController extends Controller
      */
     public function index(Request $request)
     {
-        $merchandises = Merchandise::latest()->paginate(24);
-        return view('merchandise.index', ['merchandises' => $merchandises]);
+        $vendors = Vendor::latest()->paginate(24);
+        return view('vendor.index', ['vendors' => $vendors]);
     }
 
     /**
@@ -25,7 +25,7 @@ class MerchandiseController extends Controller
      */
     public function create()
     {
-        return view('merchandise.create');
+        return view('vendor.create');
     }
 
     /**
@@ -41,17 +41,17 @@ class MerchandiseController extends Controller
         ];
 
         foreach (config('translatable.locales') as $key => $value) {
-          if (empty($request->{$value.'_name'})) {
+          if (empty($request->{$value.'_title'})) {
               continue;
           }
-          $data[$value]['name']   = $request->{$value.'_name'} ?? null;
+          $data[$value]['title']   = $request->{$value.'_title'} ?? null;
           $data[$value]['summary'] = $request->{$value.'_summary'} ?? null;
-          $data[$value]['price'] = $request->{$value.'_price'} ?? null;
+          $data[$value]['content'] = $request->{$value.'_content'} ?? null;
         }
 
-        Merchandise::create($data);
+        Vendor::create($data);
 
-        return redirect()->route('merchandise.index');
+        return redirect()->route('vendor.index');
     }
 
     /**
@@ -71,9 +71,9 @@ class MerchandiseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Merchandise $merchandise)
+    public function edit(Vendor $vendor)
     {
-        return view('merchandise.edit',[ 'merchandise' => $merchandise]);
+        return view('vendor.edit',[ 'vendor' => $vendor]);
     }
 
     /**
@@ -83,24 +83,24 @@ class MerchandiseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Merchandise $merchandise)
+    public function update(Request $request, Vendor $vendor)
     {
         $data = [
           'image' => $request->image
         ];
 
         foreach (config('translatable.locales') as $key => $value) {
-          if (empty($request->{$value.'_name'})) {
+          if (empty($request->{$value.'_title'})) {
               continue;
           }
-          $data[$value]['name']   = $request->{$value.'_name'} ?? null;
+          $data[$value]['title']   = $request->{$value.'_title'} ?? null;
           $data[$value]['summary'] = $request->{$value.'_summary'} ?? null;
-          $data[$value]['price'] = $request->{$value.'_price'} ?? null;
+          $data[$value]['content'] = $request->{$value.'_content'} ?? null;
         }
 
-        $merchandise->update($data);
+        $vendor->update($data);
 
-        return redirect()->route('merchandise.index');
+        return redirect()->route('vendor.index');
     }
 
     /**
@@ -109,11 +109,11 @@ class MerchandiseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Merchandise $merchandise)
+    public function destroy(Vendor $vendor)
     {
-        $merchandise->deleteTranslations();
-        $merchandise->delete();
+        $vendor->deleteTranslations();
+        $vendor->delete();
 
-        return redirect()->route('merchandise.index');
+        return redirect()->route('vendor.index');
     }
 }

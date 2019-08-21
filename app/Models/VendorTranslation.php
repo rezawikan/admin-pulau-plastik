@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ResearchTranslation extends Model
+class VendorTranslation extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['title', 'content', 'slug'];
+    protected $fillable = ['title','summary','content'];
 }

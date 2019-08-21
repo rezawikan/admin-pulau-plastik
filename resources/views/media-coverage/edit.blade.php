@@ -21,10 +21,6 @@
                   <label for="title">Title</label>
                   <input type="text" value="{{ $coverage->translate($value)->title ?? null }}" name="{{ $value }}_title" class="form-control" id="{{ $value }}-title" placeholder="Title">
               </div>
-              <div class="form-group">
-                  <label for="">Summary</label>
-                  <textarea type="text" name="{{ $value }}_summary" class="form-control" id="{{ $value }}-content" placeholder="Content" >{{ $coverage->translate($value)->summary ?? null }}</textarea>
-              </div>
           </div>
       </div>
       @endforeach

@@ -16,7 +16,7 @@ class GalleryAPIController extends Controller
      */
     public function index(Request $request)
     {
-        return galleryResource::collection(Gallery::latest()->paginate(24));
+        return galleryResource::collection(Gallery::ordered('desc')->paginate(9));
     }
 
     /**
