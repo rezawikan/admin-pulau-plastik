@@ -14,7 +14,7 @@ class MerchandiseController extends Controller
      */
     public function index(Request $request)
     {
-        $merchandises = Merchandise::latest()->paginate(24);
+        $merchandises = Merchandise::ordered()->paginate(24);
         return view('merchandise.index', ['merchandises' => $merchandises]);
     }
 
@@ -37,7 +37,8 @@ class MerchandiseController extends Controller
     public function store(Request $request)
     {
         $data = [
-          'image' => $request->image
+          'image' => $request->image,
+          'order' => $request->order
         ];
 
         foreach (config('translatable.locales') as $key => $value) {
@@ -86,7 +87,8 @@ class MerchandiseController extends Controller
     public function update(Request $request, Merchandise $merchandise)
     {
         $data = [
-          'image' => $request->image
+          'image' => $request->image,
+          'order' => $request->order
         ];
 
         foreach (config('translatable.locales') as $key => $value) {

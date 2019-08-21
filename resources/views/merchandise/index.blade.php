@@ -10,6 +10,7 @@
         <th scope="col">Name</th>
         <th scope="col">Summary</th>
         <th scope="col">Price</th>
+        <th scope="col">Order</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -19,6 +20,7 @@
           <td>{{ substr($merchandise->name ?? 'null', 0, 15)  }} | {{ substr($merchandise->translate('id')->name ?? 'null', 0, 15) }}</td>
           <td>{{ substr($merchandise->summary ?? 'null', 0, 15)  }} | {{ substr($merchandise->translate('id')->summary ?? 'null', 0, 15) }}</td>
           <td>{{ $merchandise->price }}</td>
+          <td>{{ $merchandise->order }}</td>
           <td>
             <form class="" action="{{ route('merchandise.destroy', ['id' => $merchandise->id]) }}" method="POST">
               {{ csrf_field() }}

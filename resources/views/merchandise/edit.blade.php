@@ -35,6 +35,10 @@
 
       <div class="container">
         <div class="form-group">
+            <label for="price">Order</label>
+            <input type="number" name="order" class="form-control"  placeholder="Order">
+        </div>
+        <div class="form-group">
             <label for="">Thumbnail Image</label>
             <div class="input-group">
                 <span class="input-group-btn">
