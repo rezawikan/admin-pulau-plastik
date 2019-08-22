@@ -33,3 +33,4 @@ Route::get('vendor', 'API\VendorAPIController@index');
 Route::get('media-coverage', 'API\MediaCoverageAPIController@index');
 Route::get('request-screening', 'API\EmailFireController@screenings');
 Route::get('request-contact', 'API\EmailFireController@contact');
+Route::get('request-buying', 'API\EmailFireController@buying');
