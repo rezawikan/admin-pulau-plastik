@@ -16,7 +16,7 @@ class ScreeningAPIController extends Controller
      */
     public function index()
     {
-        return ScreeningResource::collection(Screening::latest()->paginate(9));
+        return ScreeningResource::collection(Screening::oldest()->paginate(9));
     }
 
     /**
