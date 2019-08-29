@@ -3,16 +3,14 @@
 @section('title', 'Create Author')
 
 @section('content')
-<div class="container">
-    <form class="" action="{{ route('author.store') }}" method="POST">
-        @csrf
-        <div class="form-group">
-            <label for="title">Name</label>
-            <input type="text" name="name" class="form-control" placeholder="Name" >
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
+<form class="" action="{{ route('author.store') }}" method="POST">
+    @csrf
+    <div class="form-group">
+        <label for="title">Name</label>
+        <input type="text" name="name" class="form-control" placeholder="Name" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 @stop
 
 @section('css')

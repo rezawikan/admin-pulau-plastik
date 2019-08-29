@@ -15,30 +15,27 @@
         @csrf
         @foreach (config('translatable.locales') as $key => $value)
         <div class="tab-pane fade show active" id="{{ $value }}" role="tabpanel" aria-labelledby="{{ $value }}-tab">
-            <div class="container">
-                <div class="form-group">
-                    <label for="title">Position</label>
-                    <input type="text" name="{{ $value }}_position" class="form-control" id="{{ $value }}-position" placeholder="Position" >
-                </div>
-                <div class="form-group">
-                    <label for="">Summary</label>
-                    <textarea type="text" name="{{ $value }}_summary" class="form-control text-editor" id="{{ $value }}-summary" placeholder="Content" ></textarea>
-                </div>
+            <div class="form-group">
+                <label for="title">Position</label>
+                <input type="text" name="{{ $value }}_position" class="form-control" id="{{ $value }}-position" placeholder="Position">
+            </div>
+            <div class="form-group">
+                <label for="">Summary</label>
+                <textarea type="text" name="{{ $value }}_summary" class="form-control text-editor" id="{{ $value }}-summary" placeholder="Content"></textarea>
             </div>
         </div>
         @endforeach
 
-        <div class="container">
-            <div class="form-group">
-                <label for="">Name</label>
-                <input type="text" name="name" class="form-control" id="name" placeholder="Name">
-            </div>
-            <div class="form-group">
-                <label for="">Order</label>
-                <input type="integer" name="order" class="form-control" id="created_at" placeholder="Order">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+            <label for="">Name</label>
+            <input type="text" name="name" class="form-control" id="name" placeholder="Name" required>
         </div>
+        <div class="form-group">
+            <label for="">Order</label>
+            <input type="integer" name="order" class="form-control" id="created_at" placeholder="Order" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
     </form>
 </div>
 @stop

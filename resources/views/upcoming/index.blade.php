@@ -3,7 +3,7 @@
 @section('title', 'Upcomming')
 
 @section('content')
-  <a href="{{ route('upcomming.create') }}" class="btn btn-primary">Create Upcomming</a>
+  <a href="{{ route('upcoming.create') }}" class="btn btn-primary">Create Upcomming</a>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -20,10 +20,10 @@
           <td>{{ substr($screening->location, 0, 50) }}...</td>
           <td>{{ $screening->date }}</td>
           <td>
-            <form class="" action="{{ route('upcomming.destroy', ['id' => $screening->id]) }}" method="POST">
+            <form class="" action="{{ route('upcoming.destroy', ['id' => $screening->id]) }}" method="POST">
               {{ csrf_field() }}
               {{ method_field('DELETE') }}
-            <a href="{{ route('upcomming.edit',['id' => $screening->id]) }}" class="btn btn-primary btn-xs">Edit</a>
+            <a href="{{ route('upcoming.edit',['id' => $screening->id]) }}" class="btn btn-primary btn-xs">Edit</a>
             <input type="submit" value="Delete"class="btn btn-primary btn-xs js-submit-confirm data" data-confirm-message="You will be delete distribution target {{strtolower($screening->title)}}">
             </form>
           </td>

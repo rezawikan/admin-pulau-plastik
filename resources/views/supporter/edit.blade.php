@@ -3,35 +3,33 @@
 @section('title', 'Update Supporter')
 
 @section('content')
-  <div class="container">
-      <form class="" action="{{ route('supporter.update',['id' => $supporter->id ]) }}" method="POST">
-          @csrf
-          @method('PUT')
-          <div class="form-group">
-              <label for="">Link</label>
-              <input type="text" name="link" value="{{ $supporter->link }}" class="form-control" placeholder="Link - Optional">
-          </div>
-          <div class="form-group">
-              <label for="">Order</label>
-              <input type="number" name="order" value="{{ $supporter->order }}" class="form-control" placeholder="Order" >
-          </div>
-          <div class="form-group">
-              <label for="">Supporter Image</label>
-              <div class="input-group">
-                  <span class="input-group-btn">
-                      <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                          <i class="fa fa-picture-o"></i> Choose
-                      </a>
-                  </span>
-                  <input id="thumbnail" value="{{ $supporter->image }}" class="form-control" type="text" name="image">
+<form class="" action="{{ route('supporter.update',['id' => $supporter->id ]) }}" method="POST">
+    @csrf
+    @method('PUT')
+    <div class="form-group">
+        <label for="">Link</label>
+        <input type="text" name="link" value="{{ $supporter->link }}" class="form-control" placeholder="Link - Optional" required>
+    </div>
+    <div class="form-group">
+        <label for="">Order</label>
+        <input type="number" name="order" value="{{ $supporter->order }}" class="form-control" placeholder="Order" required>
+    </div>
+    <div class="form-group">
+        <label for="">Supporter Image</label>
+        <div class="input-group">
+            <span class="input-group-btn">
+                <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                    <i class="fa fa-picture-o"></i> Choose
+                </a>
+            </span>
+            <input id="thumbnail" value="{{ $supporter->image }}" class="form-control" type="text" name="image" required>
 
-              </div>
-              <span>Please take/put image on the supporter folder (scale 2:1)</span><br>
-              <img id="holder" src="{{ config('app.url').$supporter->image  }}" style="margin-top:15px;max-height:100px;">
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-  </div>
+        </div>
+        <span>Please put image on the supporter folder (200 x 150)</span><br>
+        <img id="holder" src="{{ config('app.url').$supporter->image  }}" style="margin-top:15px;max-height:100px;">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 @stop
 
 @section('css')

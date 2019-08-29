@@ -42,7 +42,7 @@ class BuyerNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-          ->greeting('Hi'. $this->request->fullName)
+          ->greeting('Hi '. $this->request->fullName)
           ->subject($this->request->thanks)
           ->line($this->request->notification)
           ->markdown('mail.contact-us');

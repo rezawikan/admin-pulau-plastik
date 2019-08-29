@@ -1,5 +1,5 @@
 @component('mail::message')
-{{ $greeting }}
+{{-- {{ $greeting }} --}}
 
 {{-- Intro Lines --}}
 @foreach ($introLines as $line)

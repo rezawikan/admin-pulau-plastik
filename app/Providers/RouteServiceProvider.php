@@ -44,7 +44,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('blog', Blog::class);
         Route::model('initiative', Initiative::class);
         Route::model('research', Research::class);
-        Route::model('upcomming', Screening::class);
+        Route::model('upcoming', Screening::class);
         Route::model('team', Team::class);
         Route::model('medium', Media::class);
         Route::model('media_coverage', MediaCoverage::class);

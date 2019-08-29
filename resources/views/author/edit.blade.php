@@ -3,17 +3,15 @@
 @section('title', 'Update Author')
 
 @section('content')
-  <div class="container">
-      <form class="" action="{{ route('author.update',['id' => $author->id ]) }}" method="POST">
-          @csrf
-          @method('PUT')
-          <div class="form-group">
-              <label for="title">Name</label>
-              <input type="text" value="{{ $author->name }}" name="name" class="form-control" placeholder="Name" >
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-  </div>
+<form class="" action="{{ route('author.update',['id' => $author->id ]) }}" method="POST">
+    @csrf
+    @method('PUT')
+    <div class="form-group">
+        <label for="title">Name</label>
+        <input type="text" value="{{ $author->name }}" name="name" class="form-control" placeholder="Name" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 @stop
 
 @section('css')

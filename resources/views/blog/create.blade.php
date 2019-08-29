@@ -15,47 +15,44 @@
         @csrf
         @foreach (config('translatable.locales') as $key => $value)
         <div class="tab-pane fade show active" id="{{ $value }}" role="tabpanel" aria-labelledby="{{ $value }}-tab">
-            <div class="container">
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" name="{{ $value }}_title" class="form-control" id="{{ $value }}-title" placeholder="Title" >
-                </div>
-                <div class="form-group">
-                    <label for="">Content</label>
-                    <textarea type="text" name="{{ $value }}_content" class="form-control text-editor" id="{{ $value }}-content" placeholder="Content" ></textarea>
-                </div>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" name="{{ $value }}_title" class="form-control" id="{{ $value }}-title" placeholder="Title">
+            </div>
+            <div class="form-group">
+                <label for="">Content</label>
+                <textarea type="text" name="{{ $value }}_content" class="form-control text-editor" id="{{ $value }}-content" placeholder="Content"></textarea>
             </div>
         </div>
         @endforeach
 
-        <div class="container">
-            <div class="form-group">
-                <label for="">Author</label>
-                <select name="author" class="custom-select form-control">
-                    <option selected>Select</option>
-                    @foreach ($authors as $key => $value)
-                    <option value="{{ $value->id }}">{{ $value->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="">Date</label>
-                <input type="datetime-local" name="created_at" class="form-control" id="created_at" placeholder="Date" >
-            </div>
-            <div class="form-group">
-                <label for="">Thumbnail Image</label>
-                <div class="input-group">
-                    <span class="input-group-btn">
-                        <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                            <i class="fa fa-picture-o"></i> Choose
-                        </a>
-                    </span>
-                    <input id="thumbnail" class="form-control" type="text" name="image">
-                </div>
-                <img id="holder" style="margin-top:15px;max-height:100px;">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+            <label for="">Author</label>
+            <select name="author" class="custom-select form-control" required>
+                <option selected>Select</option>
+                @foreach ($authors as $key => $value)
+                <option value="{{ $value->id }}">{{ $value->name }}</option>
+                @endforeach
+            </select>
         </div>
+        <div class="form-group">
+            <label for="">Date</label>
+            <input type="datetime-local" name="created_at" class="form-control" id="created_at" placeholder="Date" required>
+        </div>
+        <div class="form-group">
+            <label for="">Thumbnail Image</label>
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                        <i class="fa fa-picture-o"></i> Choose
+                    </a>
+                </span>
+                <input id="thumbnail" class="form-control" type="text" name="image" required>
+            </div>
+            <span>Please put image on the blog folder (scale 19:6)</span><br>
+            <img id="holder" style="margin-top:15px;max-height:100px;">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 @stop
@@ -107,6 +104,8 @@
         filebrowserUploadUrl: route_prefix + '/upload?type=Files&_token={{csrf_token()}}'
     });
 
-    $('#lfm').filemanager('image', {prefix: route_prefix});
+    $('#lfm').filemanager('image', {
+        prefix: route_prefix
+    });
 </script>
 @endpush

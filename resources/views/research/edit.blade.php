@@ -9,11 +9,11 @@
           @csrf
           <div class="form-group">
               <label for="title">Title</label>
-              <input type="text" name="title" value="{{ $research->title}}" class="form-control" placeholder="Title" >
+              <input type="text" name="title" value="{{ $research->title}}" class="form-control" placeholder="Title" required>
           </div>
           <div class="form-group">
               <label for="type">Type</label>
-              <select class="form-control" name="type" value="{{ $research->type}}">
+              <select class="form-control" name="type" value="{{ $research->type}}" required>
                 <option>Please select</option>
                 <option {{ $research->type == 1 ? 'selected': '' }}  value="1">Dokumen Regulasi/Kebijakan Pemerintah</option>
                 <option {{ $research->type == 2 ? 'selected': '' }}  value="2">Penelitian Organisasi Independen</option>
@@ -23,7 +23,7 @@
           </div>
           <div class="form-group">
               <label for="type">Lang</label>
-              <select class="form-control" name="lang" value="{{ $research->lang}}">
+              <select class="form-control" name="lang" value="{{ $research->lang}}" required>
                 <option>Please select</option>
                 <option {{ $research->lang == 1 ? 'selected': '' }} value="1">Indonesia</option>
                 <option {{ $research->lang == 2 ? 'selected': '' }} value="2">English</option>
@@ -37,7 +37,7 @@
                           <i class="fa fa-picture-o"></i> Choose
                       </a>
                   </span>
-                  <input id="thumbnail" class="form-control" type="text" name="link" value="{{ $research->link}}">
+                  <input id="thumbnail" class="form-control" type="text" name="link" value="{{ $research->link}}" required>
 
               </div>
           </div>
@@ -93,6 +93,6 @@
           filebrowserUploadUrl: route_prefix + '/upload?type=Files&_token={{csrf_token()}}'
       });
 
-      $('#lfm').filemanager('image', {prefix: route_prefix});
+      $('#lfm').filemanager('file', {prefix: route_prefix});
   </script>
 @endpush

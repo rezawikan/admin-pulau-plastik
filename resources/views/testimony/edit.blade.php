@@ -12,34 +12,30 @@
 </ul>
 <div class="tab-content">
     <form class="" action="{{ route('testimony.update',['id' => $testimony->id ]) }}" method="POST">
-      @method('PUT')
-      @csrf
-      @foreach (config('translatable.locales') as $key => $value)
-      <div class="tab-pane fade show active" id="{{ $value }}" role="tabpanel" aria-labelledby="{{ $value }}-tab">
-          <div class="container">
-              <div class="form-group">
-                  <label for="title">Title</label>
-                  <input type="text" value="{{  $testimony->translate($value)->position ?? null }}" name="{{ $value }}_position" class="form-control" id="{{ $value }}-title" placeholder="Position">
-              </div>
-              <div class="form-group">
-                  <label for="">Content</label>
-                  <textarea type="text" name="{{ $value }}_summary" class="form-control text-editor" id="{{ $value }}-summary" placeholder="Content" >{{ $testimony->translate($value)->summary ?? null }}</textarea>
-              </div>
-          </div>
-      </div>
-      @endforeach
+        @method('PUT')
+        @csrf
+        @foreach (config('translatable.locales') as $key => $value)
+        <div class="tab-pane fade show active" id="{{ $value }}" role="tabpanel" aria-labelledby="{{ $value }}-tab">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" value="{{  $testimony->translate($value)->position ?? null }}" name="{{ $value }}_position" class="form-control" id="{{ $value }}-title" placeholder="Position">
+            </div>
+            <div class="form-group">
+                <label for="">Content</label>
+                <textarea type="text" name="{{ $value }}_summary" class="form-control text-editor" id="{{ $value }}-summary" placeholder="Content">{{ $testimony->translate($value)->summary ?? null }}</textarea>
+            </div>
+        </div>
+        @endforeach
 
-      <div class="container">
         <div class="form-group">
             <label for="">Name</label>
-            <input type="text" name="name"  value="{{ $testimony->name }}" class="form-control" id="name" placeholder="Link" >
+            <input type="text" name="name" value="{{ $testimony->name }}" class="form-control" id="name" placeholder="Name" required>
         </div>
         <div class="form-group">
             <label for="">Order</label>
-            <input type="integer" name="order"  value="{{ $testimony->order }}" class="form-control" id="order" placeholder="Order" >
+            <input type="integer" name="order" value="{{ $testimony->order }}" class="form-control" id="order" placeholder="Order" required>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
     </form>
 </div>
 @stop
@@ -54,25 +50,25 @@
 
 @push('css')
 <style media="screen">
-.fade {
-    display: none !important;
-}
+    .fade {
+        display: none !important;
+    }
 
-.fade.in {
-    display: block !important;
-}
+    .fade.in {
+        display: block !important;
+    }
 
-.tab-content {
-  margin-top: 25px;
-}
+    .tab-content {
+        margin-top: 25px;
+    }
 </style>
 @endpush
 
 
 @push('js')
-  <script>
-      $(function() {
-          $('#myTab li:first-child a').tab('show')
-      })
-  </script>
+<script>
+    $(function() {
+        $('#myTab li:first-child a').tab('show')
+    })
+</script>
 @endpush

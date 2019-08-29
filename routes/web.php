@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','Auth\LoginController@showLoginForm');
 
 Auth::routes();
 
@@ -21,7 +19,7 @@ Route::get('admin/home', 'HomeController@index')->name('home');
 Route::resource('admin/blog', 'BlogController');
 Route::resource('admin/initiative', 'InitiativeController');
 Route::resource('admin/research', 'ResearchController');
-Route::resource('admin/upcomming', 'ScreeningController');
+Route::resource('admin/upcoming', 'ScreeningController');
 Route::resource('admin/team', 'TeamController');
 Route::resource('admin/partner', 'PartnerController');
 Route::resource('admin/media', 'MediaController');

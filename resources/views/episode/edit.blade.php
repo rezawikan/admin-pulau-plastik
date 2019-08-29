@@ -12,30 +12,26 @@
 </ul>
 <div class="tab-content">
     <form class="" action="{{ route('episode.update',['id' => $episode->id ]) }}" method="POST">
-      @method('PUT')
-      @csrf
-      @foreach (config('translatable.locales') as $key => $value)
-      <div class="tab-pane fade show active" id="{{ $value }}" role="tabpanel" aria-labelledby="{{ $value }}-tab">
-          <div class="container">
-              <div class="form-group">
-                  <label for="title">Title</label>
-                  <input type="text" value="{{  $episode->translate($value)->title ?? null }}" name="{{ $value }}_title" class="form-control" id="{{ $value }}-title" placeholder="Title">
-              </div>
-              <div class="form-group">
-                  <label for="">Summary</label>
-                  <textarea type="text" name="{{ $value }}_summary" class="form-control text-editor" id="{{ $value }}-summary" placeholder="Summary" >{{ $episode->translate($value)->summary ?? null }}</textarea>
-              </div>
-          </div>
-      </div>
-      @endforeach
+        @method('PUT')
+        @csrf
+        @foreach (config('translatable.locales') as $key => $value)
+        <div class="tab-pane fade show active" id="{{ $value }}" role="tabpanel" aria-labelledby="{{ $value }}-tab">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" value="{{  $episode->translate($value)->title ?? null }}" name="{{ $value }}_title" class="form-control" id="{{ $value }}-title" placeholder="Title">
+            </div>
+            <div class="form-group">
+                <label for="">Summary</label>
+                <textarea type="text" name="{{ $value }}_summary" class="form-control text-editor" id="{{ $value }}-summary" placeholder="Summary">{{ $episode->translate($value)->summary ?? null }}</textarea>
+            </div>
+        </div>
+        @endforeach
 
-      <div class="container">
         <div class="form-group">
             <label for="">Order</label>
-            <input type="integer" name="order"  value="{{ $episode->order }}" class="form-control" id="order" placeholder="Order" >
+            <input type="integer" name="order" value="{{ $episode->order }}" class="form-control" id="order" placeholder="Order" required>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
     </form>
 </div>
 @stop
@@ -50,25 +46,25 @@
 
 @push('css')
 <style media="screen">
-.fade {
-    display: none !important;
-}
+    .fade {
+        display: none !important;
+    }
 
-.fade.in {
-    display: block !important;
-}
+    .fade.in {
+        display: block !important;
+    }
 
-.tab-content {
-  margin-top: 25px;
-}
+    .tab-content {
+        margin-top: 25px;
+    }
 </style>
 @endpush
 
 
 @push('js')
-  <script>
-      $(function() {
-          $('#myTab li:first-child a').tab('show')
-      })
-  </script>
+<script>
+    $(function() {
+        $('#myTab li:first-child a').tab('show')
+    })
+</script>
 @endpush

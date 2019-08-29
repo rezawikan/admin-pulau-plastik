@@ -15,42 +15,39 @@
         @csrf
         @foreach (config('translatable.locales') as $key => $value)
         <div class="tab-pane fade show active" id="{{ $value }}" role="tabpanel" aria-labelledby="{{ $value }}-tab">
-            <div class="container">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" name="{{ $value }}_name" class="form-control" id="{{ $value }}-name" placeholder="Name">
-                </div>
-                <div class="form-group">
-                    <label for="">Summary</label>
-                    <textarea type="text" name="{{ $value }}_summary" class="form-control" id="{{ $value }}-summary" placeholder="Content" ></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="price">Price</label>
-                    <input type="number" name="{{ $value }}_price" class="form-control" id="{{ $value }}-price" placeholder="Price">
-                </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" name="{{ $value }}_name" class="form-control" id="{{ $value }}-name" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label for="">Summary</label>
+                <textarea type="text" name="{{ $value }}_summary" class="form-control" id="{{ $value }}-summary" placeholder="Content"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" name="{{ $value }}_price" class="form-control" id="{{ $value }}-price" placeholder="Price">
             </div>
         </div>
         @endforeach
 
-        <div class="container">
-          <div class="form-group">
-              <label for="price">Order</label>
-              <input type="number" name="order" class="form-control"  placeholder="Order">
-          </div>
-          <div class="form-group">
-              <label for="">Thumbnail Image</label>
-              <div class="input-group">
-                  <span class="input-group-btn">
-                      <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                          <i class="fa fa-picture-o"></i> Choose
-                      </a>
-                  </span>
-                  <input id="thumbnail" class="form-control" type="text" name="image">
-              </div>
-              <img id="holder" style="margin-top:15px;max-height:100px;">
-          </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+            <label for="price">Order</label>
+            <input type="number" name="order" class="form-control" placeholder="Order" required>
         </div>
+        <div class="form-group">
+            <label for="">Thumbnail Image</label>
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                        <i class="fa fa-picture-o"></i> Choose
+                    </a>
+                </span>
+                <input id="thumbnail" class="form-control" type="text" name="image" required>
+            </div>
+            <img id="holder" style="margin-top:15px;max-height:100px;">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
     </form>
 </div>
 @stop
@@ -81,14 +78,16 @@
 @endpush
 
 @push('js')
-  <script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
-  <script>
-      $(function() {
-          $('#myTab li:first-child a').tab('show')
-      })
+<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
+<script>
+    $(function() {
+        $('#myTab li:first-child a').tab('show')
+    })
 
-      var route_prefix = "{{ url(config('lfm.url_prefix')) }}";
+    var route_prefix = "{{ url(config('lfm.url_prefix')) }}";
 
-      $('#lfm').filemanager('image', {prefix: route_prefix});
-  </script>
+    $('#lfm').filemanager('image', {
+        prefix: route_prefix
+    });
+</script>
 @endpush

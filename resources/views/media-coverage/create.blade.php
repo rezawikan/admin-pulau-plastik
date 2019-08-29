@@ -15,35 +15,31 @@
         @csrf
         @foreach (config('translatable.locales') as $key => $value)
         <div class="tab-pane fade show active" id="{{ $value }}" role="tabpanel" aria-labelledby="{{ $value }}-tab">
-            <div class="container">
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" name="{{ $value }}_title" class="form-control" id="{{ $value }}-title" placeholder="Title">
-                </div>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" name="{{ $value }}_title" class="form-control" id="{{ $value }}-title" placeholder="Title">
             </div>
         </div>
         @endforeach
 
-        <div class="container">
-            <div class="form-group">
-                <label for="">Media</label>
-                <select name="media" class="custom-select form-control">
-                    <option selected>Select</option>
-                    @foreach ($media as $key => $medium)
-                    <option value="{{ $medium->id }}">{{ $medium->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="">Link</label>
-                <input type="text" name="link" class="form-control" id="link" placeholder="Link" >
-            </div>
-            <div class="form-group">
-                <label for="">Date</label>
-                <input type="datetime-local" name="created_at" class="form-control" id="created_at" placeholder="Date" >
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+            <label for="">Media</label>
+            <select name="media" class="custom-select form-control" required>
+                <option selected>Select</option>
+                @foreach ($media as $key => $medium)
+                <option value="{{ $medium->id }}">{{ $medium->name }}</option>
+                @endforeach
+            </select>
         </div>
+        <div class="form-group">
+            <label for="">Link</label>
+            <input type="text" name="link" class="form-control" id="link" placeholder="Link" required>
+        </div>
+        <div class="form-group">
+            <label for="">Date</label>
+            <input type="datetime-local" name="created_at" class="form-control" id="created_at" placeholder="Date" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 @stop

@@ -12,27 +12,24 @@
 </ul>
 <div class="tab-content">
     <form class="" action="{{ route('blog.update',['id' => $post->id ]) }}" method="POST">
-      @method('PUT')
-      @csrf
-      @foreach (config('translatable.locales') as $key => $value)
-      <div class="tab-pane fade show active" id="{{ $value }}" role="tabpanel" aria-labelledby="{{ $value }}-tab">
-          <div class="container">
-              <div class="form-group">
-                  <label for="title">Title</label>
-                  <input type="text" value="{{ $post->translate($value)->title ?? null }}" name="{{ $value }}_title" class="form-control" id="{{ $value }}-title" placeholder="Title">
-              </div>
-              <div class="form-group">
-                  <label for="">Content</label>
-                  <textarea type="text" name="{{ $value }}_content" class="form-control text-editor" id="{{ $value }}-content" placeholder="Content" >{{ $post->translate($value)->content ?? null }}</textarea>
-              </div>
-          </div>
-      </div>
-      @endforeach
+        @method('PUT')
+        @csrf
+        @foreach (config('translatable.locales') as $key => $value)
+        <div class="tab-pane fade show active" id="{{ $value }}" role="tabpanel" aria-labelledby="{{ $value }}-tab">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" value="{{ $post->translate($value)->title ?? null }}" name="{{ $value }}_title" class="form-control" id="{{ $value }}-title" placeholder="Title">
+            </div>
+            <div class="form-group">
+                <label for="">Content</label>
+                <textarea type="text" name="{{ $value }}_content" class="form-control text-editor" id="{{ $value }}-content" placeholder="Content">{{ $post->translate($value)->content ?? null }}</textarea>
+            </div>
+        </div>
+        @endforeach
 
-      <div class="container">
         <div class="form-group">
             <label for="">Author</label>
-            <select name="author" class="custom-select form-control">
+            <select name="author" class="custom-select form-control" required>
                 <option selected>Select</option>
                 @foreach ($authors as $key => $value)
                 <option value="{{ $value->id }}" {{ $post->author->id == $value->id ? 'selected' : ''  }}>{{ $value->name }}</option>
@@ -41,8 +38,7 @@
         </div>
         <div class="form-group">
             <label for="">Date</label>
-
-            <input type="datetime-local" name="created_at"  value="{{ $post->created_at->format('Y-m-d\Th:m') }}" class="form-control" id="created_at" placeholder="Date" >
+            <input type="datetime-local" name="created_at" value="{{ $post->created_at->format('Y-m-d\Th:m') }}" class="form-control" id="created_at" placeholder="Date" required>
         </div>
         <div class="form-group">
             <label for="">Thumbnail Image</label>
@@ -52,12 +48,12 @@
                         <i class="fa fa-picture-o"></i> Choose
                     </a>
                 </span>
-                <input id="thumbnail" value="{{ $post->image }}" class="form-control" type="text" name="image">
+                <input id="thumbnail" value="{{ $post->image }}" class="form-control" type="text" name="image" required>
             </div>
+            <span>Please put image on the blog folder (scale 19:6)</span><br>
             <img id="holder" src="{{ config('app.url').$post->image  }}" style="margin-top:15px;max-height:100px;">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
     </form>
 </div>
 @stop
@@ -72,42 +68,44 @@
 
 @push('css')
 <style media="screen">
-.fade {
-    display: none !important;
-}
+    .fade {
+        display: none !important;
+    }
 
-.fade.in {
-    display: block !important;
-}
+    .fade.in {
+        display: block !important;
+    }
 
-.tab-content {
-  margin-top: 25px;
-}
+    .tab-content {
+        margin-top: 25px;
+    }
 </style>
 @endpush
 
 @push('js')
-  <!-- CKEditor init -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.11/ckeditor.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.11/adapters/jquery.js"></script>
-  <script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
-  <script>
-      $(function() {
-          $('#myTab li:first-child a').tab('show')
-      })
-  </script>
-  <script>
-      var route_prefix = "{{ url(config('lfm.url_prefix')) }}";
-  </script>
-  <script>
-      $('.text-editor').ckeditor({
-          height: 600,
-          filebrowserImageBrowseUrl: route_prefix + '?type=Images',
-          filebrowserImageUploadUrl: route_prefix + '/upload?type=Images&_token={{csrf_token()}}',
-          filebrowserBrowseUrl: route_prefix + '?type=Files',
-          filebrowserUploadUrl: route_prefix + '/upload?type=Files&_token={{csrf_token()}}'
-      });
+<!-- CKEditor init -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.11/ckeditor.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ckeditor/4.5.11/adapters/jquery.js"></script>
+<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
+<script>
+    $(function() {
+        $('#myTab li:first-child a').tab('show')
+    })
+</script>
+<script>
+    var route_prefix = "{{ url(config('lfm.url_prefix')) }}";
+</script>
+<script>
+    $('.text-editor').ckeditor({
+        height: 600,
+        filebrowserImageBrowseUrl: route_prefix + '?type=Images',
+        filebrowserImageUploadUrl: route_prefix + '/upload?type=Images&_token={{csrf_token()}}',
+        filebrowserBrowseUrl: route_prefix + '?type=Files',
+        filebrowserUploadUrl: route_prefix + '/upload?type=Files&_token={{csrf_token()}}'
+    });
 
-      $('#lfm').filemanager('image', {prefix: route_prefix});
-  </script>
+    $('#lfm').filemanager('image', {
+        prefix: route_prefix
+    });
+</script>
 @endpush

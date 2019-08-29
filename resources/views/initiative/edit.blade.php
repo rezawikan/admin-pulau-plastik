@@ -12,27 +12,26 @@
 </ul>
 <div class="tab-content">
     <form class="" action="{{ route('initiative.update',['id' => $initiative->id ]) }}" method="POST">
-      @method('PUT')
-      @csrf
-      @foreach (config('translatable.locales') as $key => $value)
-      <div class="tab-pane fade show active" id="{{ $value }}" role="tabpanel" aria-labelledby="{{ $value }}-tab">
-          <div class="container">
-              <div class="form-group">
-                  <label for="title">Title</label>
-                  <input type="text" value="{{  $initiative->translate($value)->title ?? null }}" name="{{ $value }}_title" class="form-control" id="{{ $value }}-title" placeholder="Title">
-              </div>
-              <div class="form-group">
-                  <label for="">Content</label>
-                  <textarea type="text" name="{{ $value }}_summary" class="form-control text-editor" id="{{ $value }}-summary" placeholder="Content" >{{ $initiative->translate($value)->summary ?? null }}</textarea>
-              </div>
-          </div>
-      </div>
-      @endforeach
+        @method('PUT')
+        @csrf
+        @foreach (config('translatable.locales') as $key => $value)
+        <div class="tab-pane fade show active" id="{{ $value }}" role="tabpanel" aria-labelledby="{{ $value }}-tab">
 
-      <div class="container">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" value="{{  $initiative->translate($value)->title ?? null }}" name="{{ $value }}_title" class="form-control" id="{{ $value }}-title" placeholder="Title">
+            </div>
+            <div class="form-group">
+                <label for="">Content</label>
+                <textarea type="text" name="{{ $value }}_summary" class="form-control text-editor" id="{{ $value }}-summary" placeholder="Content">{{ $initiative->translate($value)->summary ?? null }}</textarea>
+            </div>
+
+        </div>
+        @endforeach
+
         <div class="form-group">
             <label for="">Link</label>
-            <input type="text" name="link"  value="{{ $initiative->link }}" class="form-control" id="created_at" placeholder="Link" >
+            <input type="text" name="link" value="{{ $initiative->link }}" class="form-control" id="created_at" placeholder="Link" required>
         </div>
         <div class="form-group">
             <label for="">Thumbnail Image</label>
@@ -42,12 +41,13 @@
                         <i class="fa fa-picture-o"></i> Choose
                     </a>
                 </span>
-                <input id="thumbnail" value="{{ $initiative->image }}" class="form-control" type="text" name="image">
+                <input id="thumbnail" value="{{ $initiative->image }}" class="form-control" type="text" name="image" required>
             </div>
+            <span>Please put image on the initiative folder (400 x 180)</span><br>
             <img id="holder" src="{{ config('app.url').$initiative->image  }}" style="margin-top:15px;max-height:100px;">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
+
     </form>
 </div>
 @stop
@@ -62,28 +62,30 @@
 
 @push('css')
 <style media="screen">
-.fade {
-    display: none !important;
-}
+    .fade {
+        display: none !important;
+    }
 
-.fade.in {
-    display: block !important;
-}
+    .fade.in {
+        display: block !important;
+    }
 
-.tab-content {
-  margin-top: 25px;
-}
+    .tab-content {
+        margin-top: 25px;
+    }
 </style>
 @endpush
 
 
 @push('js')
-  <script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
-  <script>
-      $(function() {
-          $('#myTab li:first-child a').tab('show')
-      })
-      var route_prefix = "{{ url(config('lfm.url_prefix')) }}";
-      $('#lfm').filemanager('image', {prefix: route_prefix});
-  </script>
+<script src="{{ asset('vendor/laravel-filemanager/js/lfm.js') }}"></script>
+<script>
+    $(function() {
+        $('#myTab li:first-child a').tab('show')
+    })
+    var route_prefix = "{{ url(config('lfm.url_prefix')) }}";
+    $('#lfm').filemanager('image', {
+        prefix: route_prefix
+    });
+</script>
 @endpush

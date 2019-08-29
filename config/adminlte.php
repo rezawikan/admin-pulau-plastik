@@ -156,9 +156,9 @@ return [
             'url'         => '#',
             'submenu' => [
                 [
-                    'text' => 'Upcomming',
-                    'url'  => 'admin/upcomming',
-                    'active' => ['admin/upcomming', 'content', 'admin/upcomming', 'regex:@^content/[0-9]+$@'],
+                    'text' => 'Upcoming',
+                    'url'  => 'admin/upcoming',
+                    'active' => ['admin/upcoming', 'content', 'admin/upcoming', 'regex:@^content/[0-9]+$@'],
                 ],
               ]
         ],

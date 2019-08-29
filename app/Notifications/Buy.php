@@ -43,7 +43,6 @@ class Buy extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-          ->greeting('Hi')
           ->subject($this->request->fullName.' want to buy our merchandise')
           ->line('Full Name :'. $this->request->fullName)
           ->line('Address :'. $this->request->address)

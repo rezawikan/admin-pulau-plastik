@@ -27,7 +27,7 @@ class ScreeningController extends Controller
     public function index()
     {
         $screenings = Screening::latest()->paginate(24);
-        return view('upcomming.index', ['screenings' => $screenings]);
+        return view('upcoming.index', ['screenings' => $screenings]);
     }
 
     /**
@@ -37,7 +37,7 @@ class ScreeningController extends Controller
      */
     public function create()
     {
-        return view('upcomming.create');
+        return view('upcoming.create');
     }
 
     /**
@@ -54,7 +54,7 @@ class ScreeningController extends Controller
           ])->toArray()
         );
 
-        return redirect()->route('upcomming.index');
+        return redirect()->route('upcoming.index');
     }
 
     /**
@@ -76,7 +76,7 @@ class ScreeningController extends Controller
      */
     public function edit(Screening $screening)
     {
-        return view('upcomming.edit', ['screening' => $screening]);
+        return view('upcoming.edit', ['screening' => $screening]);
     }
 
     /**
@@ -94,7 +94,7 @@ class ScreeningController extends Controller
           ])->toArray()
         );
 
-        return redirect()->route('upcomming.index');
+        return redirect()->route('upcoming.index');
     }
 
     /**
@@ -107,6 +107,6 @@ class ScreeningController extends Controller
     {
         $screening->delete();
 
-        return redirect()->route('upcomming.index');
+        return redirect()->route('upcoming.index');
     }
 }
