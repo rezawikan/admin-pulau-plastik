@@ -44,11 +44,12 @@ class Contact extends Notification
         return (new MailMessage)
           ->greeting('Hi')
           ->subject('Message from '. $this->request->fullName)
-          ->line('Full Name :'. $this->request->fullName)
-          ->line('Email :'. $this->request->email)
-          ->line('Number Phone : '.$this->request->phone)
-          ->line('Message : '.$this->request->message)
-          ->markdown('mail.contact-us');
+          ->markdown('mail.contact', [
+            'name' => $this->request->fullName,
+            'email' => $this->request->email,
+            'phone' => $this->request->phone,
+            'message' => $this->request->message
+          ]);
     }
 
     /**

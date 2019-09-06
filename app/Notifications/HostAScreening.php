@@ -43,24 +43,25 @@ class HostAScreening extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-          ->greeting('Hi')
+          ->greeting('Request Host A Screening From '. $this->request->fullName)
           ->subject('Request Host A Screening From '. $this->request->fullName)
-          ->line('You get an email from '. $this->request->fullName)
-          ->line('Community : '.$this->request->community)
-          ->line('As a : '.$this->request->as)
-          ->line('Contact Person : '.$this->request->phone)
-          ->line('Date of Event : '.$this->request->date)
-          ->line('Time of Event : '.$this->request->time)
-          ->line('Event Description : '.$this->request->eventDecription)
-          ->line('location : '.$this->request->location)
-          ->line('Episode : '.$this->request->episode)
-          ->line('Audience Profile : '.$this->request->audienceProfile)
-          ->line('Numbers of Audience : '.$this->request->numbersOfAudience)
-          ->line('Age of Audience : '.$this->request->ageOfAudience)
-          ->line('Email : '.$this->request->email)
-          ->line('Short Description About Pulau Plastik : '.$this->request->shortDescription_1)
-          ->line('I want to say : '.$this->request->shortDescription_2)
-          ->markdown('mail.contact-us');
+          ->markdown('mail.screenings', [
+            'email' => $this->request->email,
+            'name' => $this->request->fullName,
+            'community' => $this->request->community,
+            'as' => $this->request->as,
+            'date' => $this->request->date,
+            'phone' => $this->request->phone,
+            'time' => $this->request->time,
+            'eventDecription' => $this->request->eventDecription,
+            'location' => $this->request->location,
+            'episode' => $this->request->episode,
+            'audienceProfile' => $this->request->audienceProfile,
+            'numbersOfAudience' => $this->request->numbersOfAudience,
+            'ageOfAudience' => $this->request->ageOfAudience,
+            'shortDescription_1' => $this->request->shortDescription_1,
+            'shortDescription_2' => $this->request->shortDescription_2
+          ]);
     }
 
     /**
@@ -72,7 +73,7 @@ class HostAScreening extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+
         ];
     }
 }

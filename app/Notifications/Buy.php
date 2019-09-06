@@ -44,14 +44,15 @@ class Buy extends Notification
     {
         return (new MailMessage)
           ->subject($this->request->fullName.' want to buy our merchandise')
-          ->line('Full Name :'. $this->request->fullName)
-          ->line('Address :'. $this->request->address)
-          ->line('Telp :'. $this->request->telp)
-          ->line('Email :'. $this->request->email)
-          ->line('Product : '.$this->request->product_title)
-          ->line('Amount : '.$this->request->numbers)
-          ->line($this->request->additional ? 'Additional : '.$this->request->additional : 'Additional : -' )
-          ->markdown('mail.contact-us');
+          ->markdown('mail.buy', [
+            'name' => $this->request->fullName,
+            'address' => $this->request->address,
+            'phone' => $this->request->telp,
+            'email' => $this->request->email,
+            'product' => $this->request->product_title,
+            'numbers' => $this->request->numbers,
+            'additional' => $this->request->additional ?  $this->request->additional : '-'
+          ]);
     }
 
     /**

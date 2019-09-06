@@ -11,6 +11,26 @@
 |
 */
 
+// Route::get('mail', function (Illuminate\Http\Request $request) {
+//   $request->fullName = 'Rezza';
+//   $request->community = 'Testing';
+//   $request->as = 'Community';
+//   $request->phone = 34534345;
+//   $request->date = '20-20-2019';
+//   $request->time = '08:00';
+//   $request->eventDecription = 'Testing';
+//   $request->location = 'Bali';
+//   $request->episode = '1';
+//   $request->audienceProfile = '20d';
+//   $request->numbersOfAudience = '100';
+//   $request->ageOfAudience = '30 -40';
+//   $request->email = 'reza.wikan.dito@gmail.com';
+//   $request->shortDescription_1 =  'testing';
+//   $request->shortDescription_2 = 'testing';
+//
+//     return (new App\Notifications\HostAScreening($request))
+//                 ->toMail($request->email);
+// });
 Route::get('/','Auth\LoginController@showLoginForm');
 
 Auth::routes();
